@@ -169,7 +169,7 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
     <div class="row">
       <div class="products__item col-6 col-md-4 col-lg-3 mb-5">
         <div class="product__header mb-3">
-          <a href="single-product.html">
+          <a href="<?= url("single_product") ?>">
             <div class="product__img-cont">
               <img class="product__img w-100 h-100 object-fit-cover" src="assets/images/product-1.webp" data-id="white">
             </div>
@@ -183,7 +183,7 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
           </div>
         </div>
         <div class="product__title text-center">
-          <a class="text-black text-decoration-none" href="single-product.html">
+          <a class="text-black text-decoration-none" href="<?= url("single_product") ?>">
             Flutter Apprentice
           </a>
         </div>
@@ -212,7 +212,7 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
     <div class="row">
       <div class="products__item col-6 col-md-4 col-lg-3 mb-5">
         <div class="product__header mb-3">
-          <a href="single-product.html">
+          <a href="<?= url("single_product") ?>">
             <div class="product__img-cont">
               <img class="product__img w-100 h-100 object-fit-cover" src="assets/images/product-1.webp" data-id="white">
             </div>
@@ -226,7 +226,7 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
           </div>
         </div>
         <div class="product__title text-center">
-          <a class="text-black text-decoration-none" href="single-product.html">
+          <a class="text-black text-decoration-none" href="<?= url("single_product") ?>">
             Flutter Apprentice
           </a>
         </div>
@@ -244,7 +244,7 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
       </div>
       <div class="products__item col-6 col-md-4 col-lg-3 mb-5">
         <div class="product__header mb-3">
-          <a href="single-product.html">
+          <a href="<?= url("single_product") ?>">
             <div class="product__img-cont">
               <img class="product__img w-100 h-100 object-fit-cover" src="assets/images/product-2.webp" data-id="white">
             </div>
@@ -258,7 +258,7 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
           </div>
         </div>
         <div class="product__title text-center">
-          <a class="text-black text-decoration-none" href="single-product.html">
+          <a class="text-black text-decoration-none" href="<?= url("single_product") ?>">
             Modern Full-Stack Development
           </a>
         </div>
@@ -276,7 +276,7 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
       </div>
       <div class="products__item col-6 col-md-4 col-lg-3 mb-5">
         <div class="product__header mb-3">
-          <a href="single-product.html">
+          <a href="<?= url("single_product") ?>">
             <div class="product__img-cont">
               <img class="product__img w-100 h-100 object-fit-cover" src="assets/images/product-3.webp" data-id="white">
             </div>
@@ -290,7 +290,7 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
           </div>
         </div>
         <div class="product__title text-center">
-          <a class="text-black text-decoration-none" href="single-product.html">
+          <a class="text-black text-decoration-none" href="<?= url("single_product") ?>">
             C# 10 in a Nutshell
           </a>
         </div>
@@ -308,7 +308,7 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
       </div>
       <div class="products__item col-6 col-md-4 col-lg-3 mb-5">
         <div class="product__header mb-3">
-          <a href="single-product.html">
+          <a href="<?= url("single_product") ?>">
             <div class="product__img-cont">
               <img class="product__img w-100 h-100 object-fit-cover" src="assets/images/product-4.webp" data-id="white">
             </div>
@@ -322,7 +322,7 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
           </div>
         </div>
         <div class="product__title text-center">
-          <a class="text-black text-decoration-none" href="single-product.html">
+          <a class="text-black text-decoration-none" href="<?= url("single_product") ?>">
             Algorithms عربي
           </a>
         </div>
