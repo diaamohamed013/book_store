@@ -1,6 +1,6 @@
 <?php
-require_once ROOT_PATH . 'inc/header.php';
-require_once ROOT_PATH . 'inc/navbar.php';
+require_once ROOT_PATH . 'inc/website/header.php';
+require_once ROOT_PATH . 'inc/website/navbar.php';
 ?>
 
 <!-- Start Content Page -->
@@ -13,4 +13,4 @@ require_once ROOT_PATH . 'inc/navbar.php';
 
 
 
-<?php require_once ROOT_PATH . 'inc/footer.php'; ?>
+<?php require_once ROOT_PATH . 'inc/website/footer.php'; ?>
