@@ -99,8 +99,8 @@
                             </li>
                         </ul>
                     </li>
-                    <!--<li class="nav-item">
-                        <a href="#" class="nav-link <?php if (isset($page) && $_GET['page'] == "dashboard-categories"): ?> <?php echo 'active' ?> <?php endif; ?>">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link <?php if (isset($page) && $_GET['page'] == "categories"): ?> <?php echo 'active' ?> <?php endif; ?>">
                             <i class="nav-icon fas fa-shopping-basket"></i>
                             <p>
                                 Categories
@@ -109,20 +109,20 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="<?php echo url("dashboard-categories") ?>" class="nav-link">
+                                <a href="<?php echo url("categories") ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>All Categories</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo url("add-category") ?>" class="nav-link">
+                                <a href="<?php echo url("add_category") ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Add Category</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a href="<?php echo url("dashboard-users") ?>" class="nav-link <?php if (isset($page) && $_GET['page'] == "dashboard-users"): ?> <?php echo 'active' ?> <?php endif; ?>">
                             <i class="far fa-user nav-icon"></i>
                             <p>Users</p>
@@ -139,8 +139,8 @@
                             <i class="fas fa-shopping-cart nav-icon"></i>
                             <p>Orders</p>
                         </a>
-                    </li> -->
-                </ul>
+                    </li>
+                </ul> -->
             </nav>
             <!-- /.sidebar-menu -->
         </div>

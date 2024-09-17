@@ -80,6 +80,24 @@ if (isset($_GET['page'])) {
         case 'store-lang':
             require_once 'controllers/dashboard/books/addLang.php';
             break;
+          //categories
+        case 'store-cat':
+            require_once 'controllers/dashboard/books/categories/store-cat.php';
+            break;
+        case 'cat-delete':
+            require_once 'controllers/dashboard/books/categories/cat-delete.php';
+            break;
+        case 'cat-edit':
+            require_once 'controllers/dashboard/books/categories/cat-edit.php';
+            break;
+        case 'add_category':
+            require_once 'views/dashboard/categories/add_category.php';
+            break;
+        case 'edit-cat':
+            require_once 'views/dashboard/categories/edit-cat.php';
+            break;
+        case 'showAll':
+            require_once 'views/dashboard/categories/showAll.php';
             //Authors
         case 'authors':
             require_once 'views/dashboard/authors/show_author.php';

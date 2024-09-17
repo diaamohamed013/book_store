@@ -1,4 +1,7 @@
-<?php require_once ROOT_PATH . 'inc/dashboard/header.php';
+<?php 
+
+
+require_once ROOT_PATH . 'inc/dashboard/header.php';
 require_once ROOT_PATH . 'inc/dashboard/navbar.php';
 ?>
 <!-- Content Wrapper. Contains page content -->
