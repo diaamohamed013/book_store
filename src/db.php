@@ -26,3 +26,5 @@ function check($sql)
     }
     return false;
 }
+
+// zzzzzz
