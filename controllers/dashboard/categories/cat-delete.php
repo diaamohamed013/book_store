@@ -9,7 +9,7 @@ if (isset($_GET['id'])) {
     if (mysqli_affected_rows($conn)) {
     $_SESSION['success'] =  "  category has been deleted successfully";
     }
-    redirect('showAll');
+    redirect('categories');
 
 
     }

@@ -48,26 +48,34 @@ $result = $db->sqlQuery("SELECT * FROM `authors`");
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $i = 1;
-                                while ($author = mysqli_fetch_assoc($result)) : ?>
+                                <?php if ($result && mysqli_num_rows($result) > 0): ?>
+                                    <?php $i = 1;
+                                    while ($author = mysqli_fetch_assoc($result)) : ?>
+                                        <tr>
+                                            <td><?= $i++ ?></td>
+                                            <td>
+                                                <?= $author['author_name'];  ?>
+                                            </td>
+                                            <td>
+                                                <?= $author['description'];  ?>
+                                            </td>
+                                            <td>
+                                                <a class="btn text-info" href="<?php echo url("update-author&id=" . $author['id']) ?>">
+                                                    <i class="fas fa-pen"></i>
+                                                </a>
+                                                <a class="btn text-danger" href="<?php echo url("delete-author&id=" . $author['id']) ?>">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    <?php endwhile; ?>
+                                <?php else: ?>
                                     <tr>
-                                        <td><?= $i++ ?></td>
-                                        <td>
-                                            <?= $author['name'];  ?>
-                                        </td>
-                                        <td>
-                                            <?= $author['description'];  ?>
-                                        </td>
-                                        <td>
-                                            <a class="btn text-info" href="<?php echo url("update-author&id=" . $author['id']) ?>">
-                                                <i class="fas fa-pen"></i>
-                                            </a>
-                                            <a class="btn text-danger" href="<?php echo url("delete-author&id=" . $author['id']) ?>">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
+                                        <td colspan="4">
+                                            لا توجد نتائج متاحة حالياً
                                         </td>
                                     </tr>
-                                <?php endwhile; ?>
+                                <?php endif; ?>
                             </tbody>
                         </table>
                     </div>

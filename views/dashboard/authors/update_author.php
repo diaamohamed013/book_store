@@ -39,7 +39,7 @@ $author = $db->fetchAssociate("SELECT * FROM `authors` WHERE `id` = '$id'");
                                 <div class="row">
                                     <div class="form-group col-md-6 mb-3">
                                         <label for="inputname">اسم المؤلف</label>
-                                        <input type="text" class="form-control mt-1" id="title" name="author_name" value="<?= $author['name']; ?>">
+                                        <input type="text" class="form-control mt-1" id="title" name="author_name" value="<?= $author['author_name']; ?>">
                                         <span class="text-danger">
                                             <?php echo $_SESSION['error']['author_name'] ?? ''; ?>
                                         </span>

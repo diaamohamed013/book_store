@@ -47,12 +47,14 @@ CREATE TABLE IF NOT EXISTS books(
 
 id INT PRIMARY KEY AUTO_INCREMENT,
 title VARCHAR(200)NOT NULL ,
-author_name VARCHAR(200)NOT NULL ,
 price SMALLINT NOT NULL,
 sale_percentage SMALLINT NOT NULL,
 image VARCHAR(250),
+quantity INT NOT NULL,
 category_id INT NOT NULL ,
 FOREIGN KEY (category_id) REFERENCES categories(id),
+auth_id INT NOT NULL ,
+FOREIGN KEY (auth_id) REFERENCES authors(id),
 lang_id INT NOT NULL ,
 FOREIGN KEY (lang_id) REFERENCES languages(id)
 )
