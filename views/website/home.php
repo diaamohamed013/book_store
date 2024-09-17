@@ -1,3 +1,7 @@
+<?php 
+  $res = getAll("slider");
+?>
+
 <?php
 require_once ROOT_PATH . 'inc/website/header.php';
 require_once ROOT_PATH . 'inc/website/navbar.php';
@@ -6,16 +10,13 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
 <main class="pt-4">
   <!-- Hero Section Start -->
   <section class="section-container hero">
-    <div class="owl-carousel hero__carousel owl-theme">
+  <?php $i = 0;?>
+    <div class="owl-carousel hero__carousel owl-theme <?php if($i ==0) echo "active"; $i++;?>">
+      <?php while ($row = mysqli_fetch_assoc($res)) :?>
       <div class="hero__item">
-        <img class="hero__img" src="assets/images/carousel-2.png" alt="">
+        <img class="hero__img" src="<?php echo BASE_URL."assets/images/".$row['image']?>" alt="">
       </div>
-      <div class="hero__item">
-        <img class="hero__img" src="assets/images/carousel-2.png" alt="">
-      </div>
-      <div class="hero__item">
-        <img class="hero__img" src="assets/images/carousel-2.png" alt="">
-      </div>
+      <?php endwhile; ?>
     </div>
   </section>
   <!-- Hero Section End -->
