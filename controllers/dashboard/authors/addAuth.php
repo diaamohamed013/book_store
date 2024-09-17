@@ -26,14 +26,15 @@ if (checkRequestMethod('POST') && checkInput("author_name")) {
 
     if (!empty($errors)) {
         $_SESSION['error'] = $errors;
+        redirect("add-author");
     } else {
         $author_name = $_POST['author_name'];
         $description = $_POST['description'];
 
-        $sql = "INSERT INTO `authors` (`name`,`description`) VALUES ('$author_name','$description')";
+        $sql = "INSERT INTO `authors` (`author_name`,`description`) VALUES ('$author_name','$description')";
         if (mysqli_query($conn, $sql)) {
             $_SESSION['success'] = "Your Authors Data has been Added successfully";
         }
+        redirect("authors");
     }
-    redirect("add-author");
 }

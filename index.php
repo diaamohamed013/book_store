@@ -74,6 +74,12 @@ if (isset($_GET['page'])) {
         case 'store-book':
             require_once 'controllers/dashboard/books/add.php';
             break;
+        case 'edit-book':
+            require_once 'controllers/dashboard/books/edit.php';
+            break;
+        case 'delete-book':
+            require_once 'controllers/dashboard/books/delete.php';
+            break;
         case 'book-lang':
             require_once 'views/dashboard/books/add_lang.php';
             break;
@@ -82,13 +88,13 @@ if (isset($_GET['page'])) {
             break;
           //categories
         case 'store-cat':
-            require_once 'controllers/dashboard/books/categories/store-cat.php';
+            require_once 'controllers/dashboard/categories/store-cat.php';
             break;
         case 'cat-delete':
-            require_once 'controllers/dashboard/books/categories/cat-delete.php';
+            require_once 'controllers/dashboard/categories/cat-delete.php';
             break;
         case 'cat-edit':
-            require_once 'controllers/dashboard/books/categories/cat-edit.php';
+            require_once 'controllers/dashboard/categories/cat-edit.php';
             break;
         case 'add_category':
             require_once 'views/dashboard/categories/add_category.php';
@@ -96,8 +102,9 @@ if (isset($_GET['page'])) {
         case 'edit-cat':
             require_once 'views/dashboard/categories/edit-cat.php';
             break;
-        case 'showAll':
+        case 'categories':
             require_once 'views/dashboard/categories/showAll.php';
+            break;
             //Authors
         case 'authors':
             require_once 'views/dashboard/authors/show_author.php';

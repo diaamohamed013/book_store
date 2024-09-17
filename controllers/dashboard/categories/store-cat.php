@@ -10,11 +10,12 @@ if (checkRequestMethod('POST') && checkInput("cat_name")) {
 
     if (!empty($errors)) {
         $_SESSION['error'] = $errors;
+        redirect("add_category");
     } else {
         $sql = "INSERT INTO `categories` (`name`) VALUES ('$cat_name')";
         if (mysqli_query($conn, $sql)) {
             $_SESSION['success'] = "Your Book category has been Added successfully";
         }
+        redirect("categories");
     }
-    redirect("showAll");
 }
