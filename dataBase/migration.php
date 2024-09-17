@@ -84,3 +84,9 @@ FOREIGN KEY (`book_id`) REFERENCES `books` (`id`),
 FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`)
 )
 ");
+$results = $db->sqlQuery("
+CREATE TABLE IF NOT EXISTS `slider` (
+    `id` int PRIMARY KEY AUTO_INCREMENT,
+    `image` varchar(255) NOT NULL
+)
+");
