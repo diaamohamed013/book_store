@@ -37,10 +37,6 @@ if (checkRequestMethod('POST') && checkInput("title")) {
 
     if (inpRequire($auth_name)) {
         $errors['auth_name'] = "اسم المؤلف مطلوب";
-    } elseif (minVal($name, 5)) {
-        $errors['auth_name'] = "يجب الا يقل اسم المؤلف عن 5 حروف";
-    } elseif (maxVal($name, 25)) {
-        $errors['auth_name'] = "يجب الا يزيد اسم المؤلف عن 25 حرف";
     }
 
     if (!empty($errors)) {

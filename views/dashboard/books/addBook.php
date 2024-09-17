@@ -4,7 +4,7 @@ require_once ROOT_PATH . 'inc/dashboard/navbar.php';
 $categories = getAll("categories");
 $products = getAll("books");
 $languages = getAll("languages");
-
+$authors = getAll("authors");
 ?>
 
 <div class="content-wrapper">
@@ -51,10 +51,10 @@ $languages = getAll("languages");
                                         </span>
                                     </div>
                                     <div class="form-group col-md-6 mb-3">
-                                        <label for="inputname">اسم المؤلف</label>
-                                        <input type="text" class="form-control mt-1" id="auth_name" name="auth_name">
+                                        <label for="inputname">نسبة الخصم</label>
+                                        <input type="number" class="form-control mt-1" id="sale_percentage" name="sale_percentage">
                                         <span class="text-danger">
-                                            <?php echo $_SESSION['error']['auth_name'] ?? ''; ?>
+                                            <?php echo $_SESSION['error']['sale_percentage'] ?? ''; ?>
                                         </span>
                                     </div>
                                     <div class="form-group col-md-6 mb-3">
@@ -65,10 +65,17 @@ $languages = getAll("languages");
                                         </span>
                                     </div>
                                     <div class="form-group col-md-6 mb-3">
-                                        <label for="inputname">نسبة الخصم</label>
-                                        <input type="number" class="form-control mt-1" id="sale_percentage" name="sale_percentage">
+                                        <label for="inputname">اسم المؤلف</label>
+                                        <select class="form-control select2 mt-1" style="width: 100%;" name="auth_name">
+                                            <option selected="selected">اختر مؤلف الكتاب</option>
+                                            <?php while ($auth = mysqli_fetch_assoc($authors)) : ?>
+                                                <option value="<?= $auth['id'] ?>">
+                                                    <?= $auth['name'] ?>
+                                                </option>
+                                            <?php endwhile; ?>
+                                        </select>
                                         <span class="text-danger">
-                                            <?php echo $_SESSION['error']['sale_percentage'] ?? ''; ?>
+                                            <?php echo $_SESSION['error']['auth_name'] ?? ''; ?>
                                         </span>
                                     </div>
                                     <div class="form-group col-md-6 mb-3">
