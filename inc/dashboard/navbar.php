@@ -21,7 +21,7 @@
         <!-- Brand Logo -->
         <a href="<?php echo url("dashboard") ?>" class="brand-link">
             <img src="<?php echo BASE_URL . 'views/dashboard/dist/img/AdminLTELogo.png' ?>" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-            <span class="brand-text font-weight-light">ZAy</span>
+            <span class="brand-text font-weight-light">Ebook</span>
         </a>
 
         <!-- Sidebar -->
@@ -47,30 +47,36 @@
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <!-- <li class="nav-item">
-                        <a href="#" class="nav-link <?php if (isset($page) && $_GET['page'] == "dashboard-products"): ?> <?php echo 'active' ?> <?php endif; ?>">
-                            <i class="nav-icon fas fa-box"></i>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link <?php if (isset($page) && $_GET['page'] == "books"): ?> <?php echo 'active' ?> <?php endif; ?>">
+                            <i class="nav-icon fas fa-book"></i>
                             <p>
-                                Products
+                                Books
                                 <i class="fas fa-angle-left right"></i>
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="<?php echo url("dashboard-products") ?>" class="nav-link">
+                                <a href="<?php echo url("books") ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>All Products</p>
+                                    <p>All Books</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?php echo url("add-product") ?>" class="nav-link">
+                                <a href="<?php echo url("add-book") ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Add Product</p>
+                                    <p>Add Book</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo url("book-lang") ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Add Book Language</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item">
+                    <!--<li class="nav-item">
                         <a href="#" class="nav-link <?php if (isset($page) && $_GET['page'] == "dashboard-categories"): ?> <?php echo 'active' ?> <?php endif; ?>">
                             <i class="nav-icon fas fa-shopping-basket"></i>
                             <p>

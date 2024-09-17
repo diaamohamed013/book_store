@@ -61,6 +61,24 @@ if (isset($_GET['page'])) {
         case 'dashboard':
             require_once 'views/dashboard/index.php';
             break;
+        case 'books':
+            require_once 'views/dashboard/books/showAll.php';
+            break;
+        case 'add-book':
+            require_once 'views/dashboard/books/addBook.php';
+            break;
+        case 'update-book':
+            require_once 'views/dashboard/books/updateBook.php';
+            break;
+        case 'store-book':
+            require_once 'controllers/dashboard/books/add.php';
+            break;
+        case 'book-lang':
+            require_once 'views/dashboard/books/add_lang.php';
+            break;
+        case 'store-lang':
+            require_once 'controllers/dashboard/books/addLang.php';
+            break;
             //not found
         default:
             require_once 'views/website/404.php';
