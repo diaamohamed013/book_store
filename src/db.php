@@ -26,3 +26,12 @@ function check($sql)
     }
     return false;
 }
+
+
+function Getonerow($tablename,$id) {
+    global $conn;
+    $sql ="SELECT * FROM `$tablename` WHERE `id`= '$id'  ";  
+    $result= mysqli_query($conn,$sql);
+    return mysqli_fetch_assoc($result);
+    
+    }
