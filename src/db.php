@@ -1,5 +1,5 @@
 <?php
-$conn = mysqli_connect("localhost", "root", "", "zay-store");
+$conn = mysqli_connect("localhost", "root", "", "bookstore");
 
 
 function getAll($tableName)
