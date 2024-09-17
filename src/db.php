@@ -1,5 +1,5 @@
 <?php
-$conn = mysqli_connect("localhost", "root", "", "bookstore");
+$conn = mysqli_connect("localhost", "root", "", "ebook_project");
 
 
 function getAll($tableName)
