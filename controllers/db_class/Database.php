@@ -34,13 +34,23 @@ class Database
         return $result;
     }
 
-    public function fetchAsso($sql)
-    {
+    // public function fetchAsso($sql)
+    // {
+    //     $result = $this->sqlQuery($sql);
+    //     while ($row = mysqli_fetch_assoc($result)) {
+    //         $data[] = $row;
+    //     }
+    //     return $data;
+    // }
+
+    public function fetchAssociate($sql){
         $result = $this->sqlQuery($sql);
-        while ($row = mysqli_fetch_assoc($result)) {
-            $data[] = $row;
-        }
-        return $data;
+        return mysqli_fetch_assoc($result);
+
+    }
+
+    public function affectedRow(){
+        return mysqli_affected_rows($this->conn);
     }
 
     public function closeConn()

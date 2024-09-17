@@ -61,6 +61,7 @@ if (isset($_GET['page'])) {
         case 'dashboard':
             require_once 'views/dashboard/index.php';
             break;
+            //books
         case 'books':
             require_once 'views/dashboard/books/showAll.php';
             break;
@@ -78,6 +79,25 @@ if (isset($_GET['page'])) {
             break;
         case 'store-lang':
             require_once 'controllers/dashboard/books/addLang.php';
+            break;
+            //Authors
+        case 'authors':
+            require_once 'views/dashboard/authors/show_author.php';
+            break;
+        case 'add-author':
+            require_once 'views/dashboard/authors/add_author.php';
+            break;
+        case 'update-author':
+            require_once 'views/dashboard/authors/update_author.php';
+            break;
+        case 'store-author':
+            require_once 'controllers/dashboard/authors/addAuth.php';
+            break;
+        case 'edit-author':
+            require_once 'controllers/dashboard/authors/editAuth.php';
+            break;
+        case 'delete-author':
+            require_once 'controllers/dashboard/authors/deleteAuth.php';
             break;
             //not found
         default:

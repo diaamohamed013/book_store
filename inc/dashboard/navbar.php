@@ -68,10 +68,33 @@
                                     <p>Add Book</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a href="<?php echo url("book-lang") ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Add Book Language</p>
+                                </a>
+                            </li> -->
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link <?php if (isset($page) && $_GET['page'] == "authors"): ?> <?php echo 'active' ?> <?php endif; ?>">
+                            <i class="nav-icon fas fa-user"></i>
+                            <p>
+                                Authors
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?php echo url("authors") ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>All Authors</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo url("add-author") ?>" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Add Author</p>
                                 </a>
                             </li>
                         </ul>
