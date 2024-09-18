@@ -86,7 +86,7 @@ if (isset($_GET['page'])) {
         case 'store-lang':
             require_once 'controllers/dashboard/books/addLang.php';
             break;
-          //categories
+            //categories
         case 'store-cat':
             require_once 'controllers/dashboard/categories/store-cat.php';
             break;
@@ -124,6 +124,18 @@ if (isset($_GET['page'])) {
         case 'delete-author':
             require_once 'controllers/dashboard/authors/deleteAuth.php';
             break;
+            //users
+        case 'users':
+            require_once 'views/dashboard/show-users.php';
+            break;
+            //messages
+        case 'messages':
+            require_once 'views/dashboard/show-messages.php';
+            break;
+            //orders
+            case 'allOrders':
+                require_once 'views/dashboard/show-orders.php';
+                break;
             //not found
         default:
             require_once 'views/website/404.php';

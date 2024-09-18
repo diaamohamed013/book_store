@@ -122,6 +122,24 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-item">
+                        <a href="<?php echo url("users") ?>" class="nav-link <?php if (isset($page) && $_GET['page'] == "users"): ?> <?php echo 'active' ?> <?php endif; ?>">
+                            <i class="fas fa-users"></i>
+                            <p>Users</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?php echo url("messages") ?>" class="nav-link <?php if (isset($page) && $_GET['page'] == "messages"): ?> <?php echo 'active' ?> <?php endif; ?>">
+                            <i class="fas fa-envelope"></i>
+                            <p>Messages</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?php echo url("allOrders") ?>" class="nav-link <?php if (isset($page) && $_GET['page'] == "allOrders"): ?> <?php echo 'active' ?> <?php endif; ?>">
+                            <i class="fas fa-shopping-cart"></i>
+                            <p>Orders</p>
+                        </a>
+                    </li>
                     <!-- <li class="nav-item">
                         <a href="<?php echo url("dashboard-users") ?>" class="nav-link <?php if (isset($page) && $_GET['page'] == "dashboard-users"): ?> <?php echo 'active' ?> <?php endif; ?>">
                             <i class="far fa-user nav-icon"></i>
