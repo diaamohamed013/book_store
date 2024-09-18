@@ -24,6 +24,18 @@ if (isset($_GET['page'])) {
         case 'account':
             require_once 'views/website/account.php';
             break;
+        case 'send-user':
+                require_once 'controllers/send.user.php';
+                break;
+        case 'login':
+                require_once 'controllers/login.php';
+                break;       
+        case 'logout':
+                require_once 'controllers/logout.php';
+                break;
+        case 'resetpassword':
+                require_once 'controllers/resetpassword.php';
+                break;
         case 'branches':
             require_once 'views/website/branches.php';
             break;
