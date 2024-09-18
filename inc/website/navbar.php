@@ -31,11 +31,21 @@
                 <li class="nav__link nav__user-link"><a href="">تسجيل الخروج</a></li>
               </ul>
             </li> -->
-            <li class="nav__link">
+            <li class="nav__link d-flex align-items-center gap-2 flex-direction-row">
+            <?php if (!getSession("auth")) : ?>
                 <a class="d-flex align-items-center gap-2" href="<?= url("account") ?>">
                     تسجيل الدخول
                     <i class="fa-regular fa-user"></i>
                 </a>
+            <?php else : ?>
+                <a class="d-flex align-items-center gap-2" href="<?= url("account") ?>">
+                    <?php echo getSession("auth")['name']; ?>
+                    <i class="fa-regular fa-user"></i>
+                </a>
+                <a class="nav-icon position-relative text-decoration-none" href="<?php echo url("logout"); ?>">
+                        <i class="fa fa-fw fa-sign-out-alt text-dark mr-3"></i>
+                    </a>
+            <?php endif; ?>
             </li>
             <li class="nav__link">
                 <a class="d-flex align-items-center gap-2" href="<?= url("favourites") ?>">
