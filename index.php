@@ -140,6 +140,9 @@ if (isset($_GET['page'])) {
         case 'users':
             require_once 'views/dashboard/show-users.php';
             break;
+        case 'delete-user':
+            require_once 'controllers/dashboard/delete-user.php';
+            break;
             //messages
         case 'messages':
             require_once 'views/dashboard/show-messages.php';
