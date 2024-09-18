@@ -25,7 +25,7 @@ if (isset($_GET['page'])) {
             require_once 'views/website/account.php';
             break;
         case 'send-user':
-                require_once 'controllers/send.user.php';
+                require_once 'controllers/send-user.php';
                 break;
         case 'login':
                 require_once 'controllers/login.php';
