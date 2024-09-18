@@ -70,7 +70,7 @@ $authors = getAll("authors");
                                             <option selected="selected">اختر مؤلف الكتاب</option>
                                             <?php while ($auth = mysqli_fetch_assoc($authors)) : ?>
                                                 <option value="<?= $auth['id'] ?>">
-                                                    <?= $auth['name'] ?>
+                                                    <?= $auth['author_name'] ?>
                                                 </option>
                                             <?php endwhile; ?>
                                         </select>
