@@ -1,6 +1,16 @@
 <?php
+require_once ROOT_PATH . 'controllers/db_class/Database.php';
 require_once ROOT_PATH . 'inc/website/header.php';
 require_once ROOT_PATH . 'inc/website/navbar.php';
+
+$db = new Database("localhost", "root", "", "ebook_project");
+
+$id = $_GET['id'];
+$single_book = $db->fetchAssociate("SELECT * FROM `books` WHERE `id` = '$id'");
+$category = $single_book['category_id'];
+$lang_name = $single_book['lang_id'];
+$auth_name = $single_book['auth_id'];
+
 ?>
 
 
@@ -8,19 +18,47 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
   <!-- Product details Start -->
   <section class="section-container my-5 pt-5 d-md-flex gap-5">
     <div class="single-product__img w-100" id="main-img">
-      <img src="assets/images/product-2.webp" alt="">
+      <img class="img-fluid" src="<?= BASE_URL . 'assets/images/books/' . $single_book['image'] ?>" alt="<?= $single_book['title'] ?>">
     </div>
     <div class="single-product__details w-100 d-flex flex-column justify-content-between">
       <div>
-        <h4>Modern Full-Stack Development</h4>
-        <div class="product__author">Frank Zammetti</div>
-        <div class="product__author">373 صفحة</div>
+        <h4><?= $single_book['title'] ?></h4>
+        <div class="product__author">
+          <?php
+          $select_auth_name = "SELECT `id`,`author_name` FROM `authors`";
+          $result_auth_name = mysqli_query($conn, $select_auth_name);
+          foreach ($result_auth_name as $row_auth_name) : ?>
+            <?php if ($auth_name == $row_auth_name['id']) : ?>
+              <?php echo $row_auth_name['author_name']; ?>
+            <?php endif; ?>
+          <?php endforeach; ?>
+        </div>
+        <div class="product__author text-primary">
+          <?php
+          $select_lang_name = "SELECT `id`,`lang_name` FROM `languages`";
+          $result_lang_name = mysqli_query($conn, $select_lang_name);
+          foreach ($result_lang_name as $row_lang_name) : ?>
+            <?php if ($lang_name == $row_lang_name['id']) : ?>
+              <a href="<?= url("shop&id=" . $row_lang_name['id']) ?>">
+                <?php echo $row_lang_name['lang_name']; ?>
+              </a>
+            <?php endif; ?>
+          <?php endforeach; ?>
+        </div>
+        <div>
+          <p>
+            كمية المنتج :
+            <span class="text-muted"><?= $single_book['quantity'] ?></span>
+          </p>
+        </div>
         <div class="product__price mb-3 text-center d-flex gap-2">
-          <span class="product__price product__price--old fs-6 ">
-            450.00 جنيه
+          <span class="product__price product__price--old fs-6 <?php echo $single_book['sale_percentage'] > 0 ? "d-block" : "d-none" ?>">
+            <?= $single_book['price']; ?>
+            $
           </span>
           <span class="product__price fs-5">
-            250.00 جنيه
+            <?= $single_book['price'] - (($single_book['price'] * $single_book['sale_percentage']) / 100) ?>
+            $
           </span>
         </div>
         <div class="d-flex w-100 gap-2 mb-3">
@@ -29,21 +67,13 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
             <button class="single-product__increase border-0 bg-transparent position-absolute end-0 h-100 px-3">+</button>
             <button class="single-product__decrease border-0 bg-transparent position-absolute start-0 h-100 px-3">-</button>
           </div>
-          <button class="single-product__add-to-cart primary-button w-100">اضافه الي السلة</button>
+          <a href="<?= url("cart&id=" . $single_book['id']) ?>" class="single-product__add-to-cart primary-button w-100 text-decoration-none text-center">اضافه الي السلة</a>
         </div>
-        <div class="single-product__favourite d-flex align-items-center gap-2 mb-4">
-          <i class="fa-regular fa-heart"></i>
-          اضافة للمفضلة
-        </div>
-      </div>
-      <div class="single-product__categories">
-        <p class="mb-0">رمز المنتج: غير محدد</p>
-        <div>
-          <span>التصنيفات: </span><a href="shop.html">new</a>, <a href="shop.html">احذية</a>, <a href="shop.html">رجاليه</a>
-        </div>
-        <div>
-          <span>الوسوم: </span><a href="shop.html">pr150</a>, <a href="shop.html">flotrate</a>
-        </div>
+        <a href="<?= url("favourites&id=" . $single_book['id']) ?>">
+          <div class="single-product__favourite d-flex align-items-center gap-2 mb-4">
+            <i class="fa-regular fa-heart"></i>
+          </div>
+        </a>
       </div>
     </div>
   </section>
@@ -63,7 +93,7 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
     </nav>
     <div class="tab-content pt-4" id="nav-tabContent">
       <div class="tab-pane show active" id="nav-description" role="tabpanel" aria-labelledby="single-product__describtion-tab" tabindex="0">
-        Modern Full-Stack Development
+        <?= $single_book['title'] ?>
       </div>
       <div class="questions tab-pane" id="single-product__questions" role="tabpanel" aria-labelledby="single-product__questions-tab" tabindex="0">
         <div class="questions__list accordion" id="question__list">
@@ -160,49 +190,6 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
   </section>
   <!-- Features End -->
 
-  <!-- May love Start -->
-  <section class="section-container">
-    <div class="d-flex gap-4 align-items-center w-100 mb-4">
-      <h5 class="m-0">قد يعجبك ايضا...</h5>
-      <hr class="flex-grow-1">
-    </div>
-    <div class="row">
-      <div class="products__item col-6 col-md-4 col-lg-3 mb-5">
-        <div class="product__header mb-3">
-          <a href="<?= url("single_product") ?>">
-            <div class="product__img-cont">
-              <img class="product__img w-100 h-100 object-fit-cover" src="assets/images/product-1.webp" data-id="white">
-            </div>
-          </a>
-          <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-            وفر 10%
-          </div>
-          <div
-            class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-            <i class="fa-regular fa-heart"></i>
-          </div>
-        </div>
-        <div class="product__title text-center">
-          <a class="text-black text-decoration-none" href="<?= url("single_product") ?>">
-            Flutter Apprentice
-          </a>
-        </div>
-        <div class="product__author text-center">
-          Mike Katz
-        </div>
-        <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-          <span class="product__price product__price--old">
-            550.00 جنيه
-          </span>
-          <span class="product__price">
-            350.00 جنيه
-          </span>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- May love End -->
-
   <!-- Related products Start -->
   <section class="section-container">
     <div class="d-flex gap-4 align-items-center w-100 mb-4">
@@ -210,134 +197,57 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
       <hr class="flex-grow-1">
     </div>
     <div class="row">
-      <div class="products__item col-6 col-md-4 col-lg-3 mb-5">
-        <div class="product__header mb-3">
-          <a href="<?= url("single_product") ?>">
-            <div class="product__img-cont">
-              <img class="product__img w-100 h-100 object-fit-cover" src="assets/images/product-1.webp" data-id="white">
+      <?php
+      $select_lang_name = "SELECT `books`.* , `authors`.`author_name` , `languages`.`lang_name` FROM `books` 
+                                  INNER JOIN `authors` ON books.auth_id = authors.id 
+                                  INNER JOIN `languages` ON books.lang_id = languages.id";
+      $result_lang_name = mysqli_query($conn, $select_lang_name);
+      foreach ($result_lang_name as $row_lang_name) : ?>
+        <?php if ($lang_name == $row_lang_name['lang_id']) : ?>
+          <div class="products__item col-6 col-md-4 col-lg-3 mb-5">
+            <div class="product__header mb-3">
+              <a href="<?= url("single_product&id=" . $row_lang_name['id']) ?>">
+                <div class="product__img-cont">
+                  <img class="product__img w-100 h-100 object-fit-cover" src="<?php echo BASE_URL . 'assets/images/books/' . $row_lang_name['image'] ?>" data-id="white">
+                </div>
+              </a>
+              <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
+                وفر 10%
+              </div>
+              <a href="<?= url("favourites&id=" . $row_lang_name['id']) ?>">
+                <div
+                  class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
+                  <i class="fa-regular fa-heart"></i>
+                </div>
+              </a>
             </div>
-          </a>
-          <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-            وفر 10%
-          </div>
-          <div
-            class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-            <i class="fa-regular fa-heart"></i>
-          </div>
-        </div>
-        <div class="product__title text-center">
-          <a class="text-black text-decoration-none" href="<?= url("single_product") ?>">
-            Flutter Apprentice
-          </a>
-        </div>
-        <div class="product__author text-center">
-          Mike Katz
-        </div>
-        <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-          <span class="product__price product__price--old">
-            550.00 جنيه
-          </span>
-          <span class="product__price">
-            350.00 جنيه
-          </span>
-        </div>
-      </div>
-      <div class="products__item col-6 col-md-4 col-lg-3 mb-5">
-        <div class="product__header mb-3">
-          <a href="<?= url("single_product") ?>">
-            <div class="product__img-cont">
-              <img class="product__img w-100 h-100 object-fit-cover" src="assets/images/product-2.webp" data-id="white">
+            <div class="product__title text-center">
+              <a class="text-black text-decoration-none" href="<?= url("single_product&id=" . $row_lang_name['id']) ?>">
+                <?= $row_lang_name['title'] ?>
+              </a>
             </div>
-          </a>
-          <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-            وفر 10%
-          </div>
-          <div
-            class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-            <i class="fa-regular fa-heart"></i>
-          </div>
-        </div>
-        <div class="product__title text-center">
-          <a class="text-black text-decoration-none" href="<?= url("single_product") ?>">
-            Modern Full-Stack Development
-          </a>
-        </div>
-        <div class="product__author text-center">
-          Frank Zammetti
-        </div>
-        <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-          <span class="product__price product__price--old">
-            450.00 جنيه
-          </span>
-          <span class="product__price">
-            250.00 جنيه
-          </span>
-        </div>
-      </div>
-      <div class="products__item col-6 col-md-4 col-lg-3 mb-5">
-        <div class="product__header mb-3">
-          <a href="<?= url("single_product") ?>">
-            <div class="product__img-cont">
-              <img class="product__img w-100 h-100 object-fit-cover" src="assets/images/product-3.webp" data-id="white">
+            <div class="product__author text-center">
+              <p>
+                <?= $row_lang_name['author_name']; ?>
+              </p>
+              <p>
+                <?= $row_lang_name['lang_name']; ?>
+              </p>
             </div>
-          </a>
-          <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-            وفر 10%
-          </div>
-          <div
-            class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-            <i class="fa-regular fa-heart"></i>
-          </div>
-        </div>
-        <div class="product__title text-center">
-          <a class="text-black text-decoration-none" href="<?= url("single_product") ?>">
-            C# 10 in a Nutshell
-          </a>
-        </div>
-        <div class="product__author text-center">
-          Joseph Albahari
-        </div>
-        <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-          <span class="product__price product__price--old">
-            650.00 جنيه
-          </span>
-          <span class="product__price">
-            450.00 جنيه
-          </span>
-        </div>
-      </div>
-      <div class="products__item col-6 col-md-4 col-lg-3 mb-5">
-        <div class="product__header mb-3">
-          <a href="<?= url("single_product") ?>">
-            <div class="product__img-cont">
-              <img class="product__img w-100 h-100 object-fit-cover" src="assets/images/product-4.webp" data-id="white">
+            <div
+              class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
+              <span class="product__price product__price--old <?php echo $row_lang_name['sale_percentage'] > 0 ? "d-block" : "d-none" ?>">
+                <?= $row_lang_name['price']; ?>
+                $
+              </span>
+              <span class="product__price">
+                <?= $row_lang_name['price'] - (($row_lang_name['price'] * $row_lang_name['sale_percentage']) / 100) ?>
+                $
+              </span>
             </div>
-          </a>
-          <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
-            وفر 10%
           </div>
-          <div
-            class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
-            <i class="fa-regular fa-heart"></i>
-          </div>
-        </div>
-        <div class="product__title text-center">
-          <a class="text-black text-decoration-none" href="<?= url("single_product") ?>">
-            Algorithms عربي
-          </a>
-        </div>
-        <div class="product__author text-center">
-          Aditya Y. Bhargava
-        </div>
-        <div class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-          <span class="product__price product__price--old">
-            359.00 جنيه
-          </span>
-          <span class="product__price">
-            249.00 جنيه
-          </span>
-        </div>
-      </div>
+        <?php endif; ?>
+      <?php endforeach; ?>
     </div>
   </section>
   <!-- Related products End -->
