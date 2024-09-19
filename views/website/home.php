@@ -43,7 +43,7 @@ $new_Arrival_books = $db->sqlQuery("SELECT `books`.*  , `authors`.`author_name` 
       <div class="offer__title fw-bolder">
         عروض اليوم
       </div>
-      <div class="offer__time d-flex gap-2 fs-6">
+      <div class="offer__time d-flex gap-2 fs-6">`
         <div class="d-flex flex-column align-items-center">
           <span class="fw-bolder">06</span>
           <div>ساعات</div>

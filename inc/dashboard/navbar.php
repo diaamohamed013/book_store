@@ -68,12 +68,12 @@
                                     <p>Add Book</p>
                                 </a>
                             </li>
-                            <!-- <li class="nav-item">
+                            <li class="nav-item">
                                 <a href="<?php echo url("book-lang") ?>" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Add Book Language</p>
                                 </a>
-                            </li> -->
+                            </li>
                         </ul>
                     </li>
                     <li class="nav-item">

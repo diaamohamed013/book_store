@@ -67,7 +67,7 @@ $auth_name = $single_book['auth_id'];
             <button class="single-product__increase border-0 bg-transparent position-absolute end-0 h-100 px-3">+</button>
             <button class="single-product__decrease border-0 bg-transparent position-absolute start-0 h-100 px-3">-</button>
           </div>
-          <a href="<?= url("cart&id=" . $single_book['id']) ?>" class="single-product__add-to-cart primary-button w-100 text-decoration-none text-center">اضافه الي السلة</a>
+          <a href="<?= url("add-cart&id=" . $single_book['id']) ?>" class="single-product__add-to-cart primary-button w-100 text-decoration-none text-center">اضافه الي السلة</a>
         </div>
         <a href="<?= url("favourites&id=" . $single_book['id']) ?>">
           <div class="single-product__favourite d-flex align-items-center gap-2 mb-4">
@@ -83,10 +83,10 @@ $auth_name = $single_book['auth_id'];
   <section class="section-container">
     <nav class="mb-0 ">
       <div class="nav nav-tabs single-product__nav pb-0 gap-2" id="nav-tab" role="tablist">
-        <button class="single-product__tab nav-link active" id="single-product__describtion-tab" data-bs-toggle="tab" data-bs-target="#nav-description" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
+        <button class="single-product_tab nav-link active" id="single-product_describtion-tab" data-bs-toggle="tab" data-bs-target="#nav-description" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
           الوصف
         </button>
-        <button class="single-product__tab nav-link" id="single-product__questions-tab" data-bs-toggle="tab" data-bs-target="#single-product__questions" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">
+        <button class="single-product_tab nav-link" id="single-productquestions-tab" data-bs-toggle="tab" data-bs-target="#single-product_questions" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">
           الاسئلة الشائعة
         </button>
       </div>
@@ -95,8 +95,8 @@ $auth_name = $single_book['auth_id'];
       <div class="tab-pane show active" id="nav-description" role="tabpanel" aria-labelledby="single-product__describtion-tab" tabindex="0">
         <?= $single_book['title'] ?>
       </div>
-      <div class="questions tab-pane" id="single-product__questions" role="tabpanel" aria-labelledby="single-product__questions-tab" tabindex="0">
-        <div class="questions__list accordion" id="question__list">
+      <div class="questions tab-pane" id="single-product_questions" role="tabpanel" aria-labelledby="single-product_questions-tab" tabindex="0">
+        <div class="questions_list accordion" id="question_list">
           <div class="questions__item accordion-item">
             <h2 class="questions__header accordion-header" id="question1">
               <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
