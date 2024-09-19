@@ -37,17 +37,21 @@ if (checkRequestMethod('POST') && checkInput("old_pass")) {
     if (!empty($errors)) {
         $_SESSION['error'] = $errors;
     } else {
-        $old_user_name = $_GET['name'];
-        $new_user = "UPDATE `users` SET `name` = '$user_name_new', `email` = '$user_email_new' WHERE `name` = '$old_user_name'";
-        $result = mysqli_query($conn, $new_user);
-        if (mysqli_query($conn, $new_user)) {
-            $_SESSION['auth'] = [
-                'id' => $id,
-                'name' => $user_name_new,
-                'email' => $user_email_new
-            ];
-            $_SESSION['success'] = "لقد تم تعديل كلمة السر الخاصة بك";
+        $user_name = $_GET['name'];
+        if ($new_pass == $new_pass_cur) {
+            $old_pass = password_hash($old_pass, PASSWORD_DEFAULT);
+            $new_pass = password_hash($new_pass, PASSWORD_DEFAULT);
+            $new_pass_cur = password_hash($new_pass_cur, PASSWORD_DEFAULT);
+            $new_user_password = "UPDATE `users` SET `password` = '$new_pass' WHERE `name` = '$user_name'";
+            $result = mysqli_query($conn, $new_user_password);
+            if ($result) {
+                $_SESSION['success'] = "لقد تم تعديل كلمة السر الخاصة بك";
+            } else {
+                $_SESSION['error'] = "برجاء المحاولة مرة آخرى";
+            }
+        } else {
+            $errors['new_pass_cur'] = "برجاء التأكد من البيانات";
         }
     }
-    redirect("account_details");
+    redirect("logout");
 }

@@ -42,7 +42,7 @@ if (checkRequestMethod('POST') && checkInput("email")) {
                 'email' => $email,
             ];
         } else {
-            $_SESSION['error']['login'] = "Incorrect Email or Password";
+            $_SESSION['error']['password'] = "Incorrect Email or Password";
         }
     }
     redirect("account");
