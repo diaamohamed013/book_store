@@ -33,4 +33,10 @@
                         </a>
                     </div>
                 </div>
+                <script>
+                    <?php if (getSession('added-to-cart')): ?>
+                        alert('<?= getSession('added-to-cart') ?>')
+                        <?php unset($_SESSION['added-to-cart']); ?>
+                    <?php endif; ?>
+                </script>
             </header>
