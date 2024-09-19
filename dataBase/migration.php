@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `slider` (
 $results = $db->sqlQuery("
 CREATE TABLE IF NOT EXISTS `authors`  (
 `id` int PRIMARY KEY AUTO_INCREMENT,
-`name` varchar(255) NOT NULL,
+`author_name` varchar(255) NOT NULL,
 `description` varchar(255) NOT NULL
 )
 ");
