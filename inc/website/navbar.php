@@ -135,32 +135,37 @@
         </button>
     </div>
     <div class="nav__categories-body offcanvas-body pt-4">
-        <p>لا توجد منتجات في سلة المشتريات.</p>
+        
         <div class="cart-products">
+        <?php $i=1; foreach(getSession('cart') as $key=>$value): ?>
             <ul class="nav__list list-unstyled">
                 <li class="cart-products__item d-flex justify-content-between gap-2">
+                
                     <div class="d-flex gap-2">
                         <div>
-                            <button class="cart-products__remove">x</button>
+                            <a href="<?= url('remove&id='.$key) ?>"class="cart-products__remove">x</a>
                         </div>
                         <div>
-                            <p class="cart-products__name m-0 fw-bolder">Flutter Apprentice</p>
-                            <p class="cart-products__price m-0">1 x 350.00 جنيه</p>
+                            <p class="cart-products__name m-0 fw-bolder"><?= $value['title'] ?></p>
+                            <p class="cart-products__price m-0"> <?= $value['price'] ?>ج.م</p><br>
+                            <p class="cart-products__price m-0"> <?= $value['quantity'] ?></p>
+
                         </div>
                     </div>
                     <div class="cart-products__img">
-                        <img class="w-100" src="assets/images/product-1.webp" alt="">
+                        <img class="w-100" src="<?php echo BASE_URL.'assets/images/books/' . $value['image'] ?>" alt="">
                     </div>
                 </li>
             </ul>
             <div class="d-flex justify-content-between">
                 <p class="fw-bolder">المجموع:</p>
-                <p>350.00 جنيه</p>
+                <p><?= $value['total'] ?></p>
             </div>
         </div>
-        <button class="nav__cart-btn text-center text-white w-100 border-0 mb-3 py-2 px-3 bg-success">اتمام الطلب</button>
-        <button class="nav__cart-btn text-center w-100 py-2 px-3 bg-transparent">تابع التسوق</button>
+        <a href="<?= url('order&id='.$key) ?>" class="nav__cart-btn text-center text-white w-100 border-0 mb-3 py-2 px-3 bg-success">اتمام الطلب</a>
+        <a href="<?= url('shop&id='.$key) ?>" class="nav__cart-btn text-center w-100 py-2 px-3 bg-transparent">تابع التسوق</a>
     </div>
+    <?php endforeach; ?>
 </div>
 </div>
 <!-- News Content Start -->

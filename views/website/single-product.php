@@ -2,7 +2,9 @@
 require_once ROOT_PATH . 'inc/website/header.php';
 require_once ROOT_PATH . 'inc/website/navbar.php';
 ?>
-
+<?php
+$result=GetAll('books');
+?>
 
 <main>
   <!-- Product details Start -->
@@ -12,6 +14,7 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
     </div>
     <div class="single-product__details w-100 d-flex flex-column justify-content-between">
       <div>
+        <?php while($book=mysqli_fetch_assoc($result)): ?>
         <h4>Modern Full-Stack Development</h4>
         <div class="product__author">Frank Zammetti</div>
         <div class="product__author">373 صفحة</div>
@@ -22,19 +25,26 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
           <span class="product__price fs-5">
             250.00 جنيه
           </span>
+          
         </div>
         <div class="d-flex w-100 gap-2 mb-3">
           <div class="single-product__quanitity position-relative">
-            <input class="single-product__input text-center px-3" type="number" value="1" placeholder="---">
-            <button class="single-product__increase border-0 bg-transparent position-absolute end-0 h-100 px-3">+</button>
+
+           <button class="single-product__increase border-0 bg-transparent position-absolute end-0 h-100 px-3">+</button>
             <button class="single-product__decrease border-0 bg-transparent position-absolute start-0 h-100 px-3">-</button>
+            <input class="single-product__input text-center px-3" type="number" value="1" placeholder="---">
           </div>
-          <button class="single-product__add-to-cart primary-button w-100">اضافه الي السلة</button>
+          <a href="<?php echo url('add-cart&id='.$book['id']) ?>" class="single-product__add-to-cart primary-button w-100">اضافه الي السلة</a>
+          <?php endwhile; ?>
         </div>
+
+        
         <div class="single-product__favourite d-flex align-items-center gap-2 mb-4">
           <i class="fa-regular fa-heart"></i>
           اضافة للمفضلة
         </div>
+
+        
       </div>
       <div class="single-product__categories">
         <p class="mb-0">رمز المنتج: غير محدد</p>
@@ -46,6 +56,7 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
         </div>
       </div>
     </div>
+  
   </section>
   <!-- Product details End -->
 

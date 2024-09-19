@@ -25,17 +25,17 @@ if (isset($_GET['page'])) {
             require_once 'views/website/account.php';
             break;
         case 'send-user':
-                require_once 'controllers/send-user.php';
-                break;
+            require_once 'controllers/send-user.php';
+            break;
         case 'login':
-                require_once 'controllers/login.php';
-                break;       
+            require_once 'controllers/login.php';
+            break;
         case 'logout':
-                require_once 'controllers/logout.php';
-                break;
+            require_once 'controllers/logout.php';
+            break;
         case 'resetpassword':
-                require_once 'controllers/resetpassword.php';
-                break;
+            require_once 'controllers/resetpassword.php';
+            break;
         case 'branches':
             require_once 'views/website/branches.php';
             break;
@@ -148,9 +148,17 @@ if (isset($_GET['page'])) {
             require_once 'views/dashboard/show-messages.php';
             break;
             //orders
-            case 'allOrders':
-                require_once 'views/dashboard/show-orders.php';
-                break;
+        case 'allOrders':
+            require_once 'views/dashboard/show-orders.php';
+            break;
+            //cart
+        case 'add-cart':
+            require_once 'controllers/cart/add.php';
+            break;
+        case 'remove':
+            require_once 'controllers/cart/remove.php';
+            break;
+
             //not found
         default:
             require_once 'views/website/404.php';
