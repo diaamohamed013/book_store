@@ -21,6 +21,12 @@ if (isset($_GET['page'])) {
         case 'account_details':
             require_once 'views/website/account_details.php';
             break;
+        case 'edit-user':
+            require_once 'controllers/edit-user.php';
+            break;
+        case 'edit-password':
+            require_once 'controllers/edit-password.php';
+            break;
         case 'account':
             require_once 'views/website/account.php';
             break;

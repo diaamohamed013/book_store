@@ -32,20 +32,20 @@
               </ul>
             </li> -->
             <li class="nav__link d-flex align-items-center gap-2 flex-direction-row">
-            <?php if (!getSession("auth")) : ?>
-                <a class="d-flex align-items-center gap-2" href="<?= url("account") ?>">
-                    تسجيل الدخول
-                    <i class="fa-regular fa-user"></i>
-                </a>
-            <?php else : ?>
-                <a class="d-flex align-items-center gap-2" href="<?= url("account") ?>">
-                    <?php echo getSession("auth")['name']; ?>
-                    <i class="fa-regular fa-user"></i>
-                </a>
-                <a class="nav-icon position-relative text-decoration-none" href="<?php echo url("logout"); ?>">
+                <?php if (!getSession("auth")) : ?>
+                    <a class="d-flex align-items-center gap-2" href="<?= url("account") ?>">
+                        تسجيل الدخول
+                        <i class="fa-regular fa-user"></i>
+                    </a>
+                <?php else : ?>
+                    <a class="d-flex align-items-center gap-2" href="<?= url("profile") ?>">
+                        <?php echo getSession("auth")['name']; ?>
+                        <i class="fa-regular fa-user"></i>
+                    </a>
+                    <a class="nav-icon position-relative text-decoration-none" href="<?php echo url("logout"); ?>">
                         <i class="fa fa-fw fa-sign-out-alt text-dark mr-3"></i>
                     </a>
-            <?php endif; ?>
+                <?php endif; ?>
             </li>
             <li class="nav__link">
                 <a class="d-flex align-items-center gap-2" href="<?= url("favourites") ?>">
@@ -119,9 +119,21 @@
             <img class="w-100" src="assets/images/logo.png" alt="">
         </div>
         <ul class="nav__list list-unstyled">
-            <li class="nav__link nav__side-link"><a href="<?= url("shop") ?>" class="py-3">جميع المنتجات</a></li>
-            <li class="nav__link nav__side-link"><a href="<?= url("shop") ?>" class="py-3">كتب عربيه</a></li>
-            <li class="nav__link nav__side-link"><a href="<?= url("shop") ?>" class="py-3">كتب انجليزية</a></li>
+            <li class="nav__link nav__side-link">
+                <a href="<?= url("shop") ?>" class="py-3">
+                    جميع المنتجات
+                </a>
+            </li>
+            <?php
+            $select_language = "SELECT `id`,`lang_name` FROM `languages`";
+            $result_language = mysqli_query($conn, $select_language);
+            foreach ($result_language as $row_language) : ?>
+                    <li class="nav__link nav__side-link">
+                        <a href="<?= url("shop&id=" . $row_language['id']) ?>" class="py-3">
+                            <?php echo $row_language['lang_name']; ?>
+                        </a>
+                    </li>
+            <?php endforeach; ?>
         </ul>
     </div>
 </div>
