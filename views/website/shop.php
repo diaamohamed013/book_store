@@ -20,10 +20,10 @@ if (isset($_GET['id'])) {
   }
 } else {
   $str = "";
-  if (isset($_GET['name'])) {
-    $name = $_GET['name'];
-    $str = "WHERE `author_name` = '$name'";
-  }
+  // if (isset($_GET['name'])) {
+  //   $name = $_GET['name'];
+  //   $str = "WHERE `author_name` = '$name'";
+  // }
   $all_books = $db->sqlQuery("SELECT `books`.* , `authors`.`author_name` , `languages`.`lang_name` FROM `books` 
                                   INNER JOIN `authors` ON books.auth_id = authors.id 
                                   INNER JOIN `languages` ON books.lang_id = languages.id $str");
