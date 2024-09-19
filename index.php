@@ -18,8 +18,17 @@ if (isset($_GET['page'])) {
         case "shop":
             require_once 'views/website/shop.php';
             break;
+        case "cart":
+            require_once 'views/website/cart.php';
+            break;
         case 'account_details':
             require_once 'views/website/account_details.php';
+            break;
+        case 'edit-user':
+            require_once 'controllers/edit-user.php';
+            break;
+        case 'edit-password':
+            require_once 'controllers/edit-password.php';
             break;
         case 'account':
             require_once 'views/website/account.php';

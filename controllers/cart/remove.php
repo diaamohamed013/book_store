@@ -8,7 +8,9 @@ if (isset($_GET['id'])) {
         unset($_SESSION['cart'][$product_id]);
         $_SESSION['added-to-cart'] = "Item removed from cart";
     }
+    redirect('cart');
+    
 }
 
-// redirect('shop')
+
 ?>

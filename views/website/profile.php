@@ -1,4 +1,7 @@
 <?php
+if (!getSession("auth")) {
+  redirect('home');
+}
 require_once ROOT_PATH . 'inc/website/header.php';
 require_once ROOT_PATH . 'inc/website/navbar.php';
 ?>
@@ -25,40 +28,42 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
         <div class="profile__user-img rounded-circle overflow-hidden">
           <img class="w-100" src="assets/images/user.png" alt="" />
         </div>
-        <div class="profile__user-name">moamenyt</div>
+        <div class="profile__user-name">
+          <h4><?= $_SESSION['auth']["name"] ?></h4>
+        </div>
       </div>
       <ul class="profile__tabs list-unstyled ps-3">
-        <li class="profile__tab active">
-          <a class="py-2 px-3 text-black text-decoration-none" href="profile.html">لوحة التحكم</a>
+        <li class="profile__tab <?php if ($_GET['page'] == "profile"): ?> <?php echo 'active' ?> <?php endif; ?>">
+          <a class="py-2 px-3 text-black text-decoration-none" href="<?= url("profile") ?>">لوحة التحكم</a>
         </li>
-        <li class="profile__tab">
-          <a class="py-2 px-3 text-black text-decoration-none" href="orders.html">الطلبات</a>
+        <li class="profile__tab <?php if ($_GET['page'] == "orders"): ?> <?php echo 'active' ?> <?php endif; ?>">
+          <a class="py-2 px-3 text-black text-decoration-none" href="<?= url("orders") ?>">الطلبات</a>
         </li>
-        <li class="profile__tab">
-          <a class="py-2 px-3 text-black text-decoration-none" href="account_details.html">تفاصيل الحساب</a>
+        <li class="profile__tab <?php if ($_GET['page'] == "account_details"): ?> <?php echo 'active' ?> <?php endif; ?>">
+          <a class="py-2 px-3 text-black text-decoration-none" href="<?= url("account_details&name=" . $_SESSION['auth']["name"]) ?>">تفاصيل الحساب</a>
         </li>
-        <li class="profile__tab">
-          <a class="py-2 px-3 text-black text-decoration-none" href="favourites.html">المفضلة</a>
+        <li class="profile__tab <?php if ($_GET['page'] == "favourites"): ?> <?php echo 'active' ?> <?php endif; ?>">
+          <a class="py-2 px-3 text-black text-decoration-none" href="<?= url("favourites") ?>">المفضلة</a>
         </li>
-        <li class="profile__tab">
-          <a class="py-2 px-3 text-black text-decoration-none" href="">تسجيل الخروج</a>
+        <li class="profile__tab <?php if ($_GET['page'] == "logout"): ?> <?php echo 'active' ?> <?php endif; ?>">
+          <a class="py-2 px-3 text-black text-decoration-none" href="<?= url("logout") ?>">تسجيل الخروج</a>
         </li>
       </ul>
     </div>
     <div class="profile__left mt-4 mt-md-0 w-100">
       <div class="profile__tab-content active">
         <p class="mb-5">
-          مرحبا <span class="fw-bolder">moamenyt</span> (لست
-          <span class="fw-bolder">moamenyt</span>?
-          <a class="text-danger" href="">تسجيل الخروج</a>)
+          مرحبا <span class="fw-bolder"><?= $_SESSION['auth']["name"] ?></span> (لست
+          <span class="fw-bolder"><?= $_SESSION['auth']["name"] ?></span>?
+          <a class="text-danger" href="<?= url("logout") ?>">تسجيل الخروج</a>)
         </p>
 
         <p>
           من خلال لوحة تحكم الحساب الخاص بك، يمكنك استعراض
-          <a class="text-danger" href="orders.html">أحدث الطلبات</a>،
+          <a class="text-danger" href="<?= url("orders") ?>">أحدث الطلبات</a>،
           والفواتير
           الخاصة بك، بالإضافة إلى
-          <a class="text-danger" href="account_details.html">تعديل كلمة المرور وتفاصيل حسابك</a>.
+          <a class="text-danger" href="<?= url("account_details") ?>">تعديل كلمة المرور وتفاصيل حسابك</a>.
         </p>
       </div>
     </div>
