@@ -39,8 +39,8 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
         <li class="profile__tab <?php if ($_GET['page'] == "orders"): ?> <?php echo 'active' ?> <?php endif; ?>">
           <a class="py-2 px-3 text-black text-decoration-none" href="<?= url("orders") ?>">الطلبات</a>
         </li>
-        <li class="profile__tab <?php if ($_GET['page'] == "account_details&name=" . $_SESSION['auth']["name"]): ?> <?php echo 'active' ?> <?php endif; ?>">
-          <a class="py-2 px-3 text-black text-decoration-none" href="<?= url("account_details") ?>">تفاصيل الحساب</a>
+        <li class="profile__tab <?php if ($_GET['page'] == "account_details"): ?> <?php echo 'active' ?> <?php endif; ?>">
+          <a class="py-2 px-3 text-black text-decoration-none" href="<?= url("account_details&name=" . $_SESSION['auth']["name"]) ?>">تفاصيل الحساب</a>
         </li>
         <li class="profile__tab <?php if ($_GET['page'] == "favourites"): ?> <?php echo 'active' ?> <?php endif; ?>">
           <a class="py-2 px-3 text-black text-decoration-none" href="<?= url("favourites") ?>">المفضلة</a>
@@ -76,7 +76,7 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
 
           <button class="primary-button" type="sumbit">تعديل</button>
         </form>
-        <form method="post" action="<?= url("edit-user&name=" . $_SESSION['auth']["name"]) ?>">
+        <form method="post" action="<?= url("edit-password&name=" . $_SESSION['auth']["name"]) ?>">
           <fieldset>
             <legend class="fw-bolder">تغيير كلمة المرور</legend>
             <div class="w-100 mb-3">
@@ -86,19 +86,22 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
               </label>
               <input type="password" class="form__input" id="curr-password" name="old_pass" />
             </div>
+            <span class="text-danger fs-8 mb-3 d-block"><?php echo $_SESSION['error']['old_pass'] ?? ''; ?></span>
             <div class="w-100 mb-3">
               <label class="fw-bold mb-2" for="curr-password">
                 كلمة المرور الجديدة (اترك الحقل فارغاً إذا كنت لا تودّ
                 تغييرها)
               </label>
-              <input type="paswword" class="form__input" id="new-password" name="new_pass" />
+              <input type="password" class="form__input" id="new-password" name="new_pass" />
             </div>
+            <span class="text-danger fs-8 mb-3 d-block"><?php echo $_SESSION['error']['new_pass'] ?? ''; ?></span>
             <div class="w-100 mb-3">
               <label class="fw-bold mb-2" for="curr-password">
                 تأكيد كلمة المرور الجديدة
               </label>
               <input type="password" class="form__input" id="new-password-cur" name="new_pass_cur" />
             </div>
+            <span class="text-danger fs-8 mb-3 d-block"><?php echo $_SESSION['error']['new_pass_cur'] ?? ''; ?></span>
             <button class="primary-button" type="submit">تغيير كلمة المرور</button>
           </fieldset>
         </form>

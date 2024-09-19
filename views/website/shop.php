@@ -10,23 +10,23 @@ if (isset($_GET['id'])) {
   $all_books = "SELECT * FROM `languages` WHERE `id` = '$id'";;
   if (check($all_books)) {
 
-    $all_books = $db->sqlQuery("SELECT `books`.* , COUNT(books.`id`) AS `num_of_books` , `authors`.`author_name` , `languages`.* FROM `books` 
+    $all_books = $db->sqlQuery("SELECT `books`.* , `authors`.`author_name` , `languages`.`lang_name` FROM `books` 
                                       INNER JOIN `authors` ON books.auth_id = authors.id 
                                       INNER JOIN `languages` ON books.lang_id = languages.id 
-                                      WHERE `lang_id` = '$id' GROUP BY books.`id`");
+                                      WHERE `lang_id` = '$id'");
   } else {
     require_once 'views/website/404.php';
     die;
   }
 } else {
   $str = "";
-  // if (isset($_GET['gender'])) {
-  //   $gender = $_GET['gender'];
-  //   $str = "WHERE `gender` = '$gender'";
+  // if (isset($_GET['name'])) {
+  //   $name = $_GET['name'];
+  //   $str = "WHERE `author_name` = '$name'";
   // }
-  $all_books = $db->sqlQuery("SELECT `books`.* , COUNT(books.`id`) AS `num_of_books` , `authors`.`author_name` , `languages`.* FROM `books` 
+  $all_books = $db->sqlQuery("SELECT `books`.* , `authors`.`author_name` , `languages`.`lang_name` FROM `books` 
                                   INNER JOIN `authors` ON books.auth_id = authors.id 
-                                  INNER JOIN `languages` ON books.lang_id = languages.id $str GROUP BY books.`id`");
+                                  INNER JOIN `languages` ON books.lang_id = languages.id $str");
 }
 ?>
 
