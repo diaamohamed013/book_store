@@ -36,6 +36,9 @@ if (isset($_GET['page'])) {
         case 'resetpassword':
                 require_once 'controllers/resetpassword.php';
                 break;
+        case 'update-password':
+                require_once 'controllers/update-password.php';
+                break;
         case 'branches':
             require_once 'views/website/branches.php';
             break;
@@ -139,6 +142,9 @@ if (isset($_GET['page'])) {
             //users
         case 'users':
             require_once 'views/dashboard/show-users.php';
+            break;
+        case 'delete-user':
+            require_once 'controllers/dashboard/delete-user.php';
             break;
             //messages
         case 'messages':

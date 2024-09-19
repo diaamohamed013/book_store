@@ -90,7 +90,7 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
               class="form-control p-3"
               placeholder="الاسم كامل"
               aria-label="name"
-              name="name"
+              name="user_name"
               required
               aria-describedby="basic-addon1" />
             <span
@@ -99,14 +99,14 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
               <i class="fa-solid fa-user"></i>
             </span>
           </div>
-          <span class="text-danger fs-8 mb-3 d-block"><?php echo $_SESSION['error']['name'] ?? ''; ?></span>
+          <span class="text-danger fs-8 mb-3 d-block"><?php echo $_SESSION['error']['user_name'] ?? ''; ?></span>
           <div class="input-group rounded-1 mb-3">
             <input
               type="text"
               class="form-control p-3"
               placeholder="البريد الالكتروني"
               aria-label="email"
-              name="email"
+              name="user_email"
               required
               aria-describedby="basic-addon1" />
             <span
@@ -115,14 +115,14 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
               <i class="fa-solid fa-envelope"></i>
             </span>
           </div>
-          <span class="text-danger fs-8 mb-3 d-block"><?php echo $_SESSION['error']['email'] ?? ''; ?></span>
+          <span class="text-danger fs-8 mb-3 d-block"><?php echo $_SESSION['error']['user_email'] ?? ''; ?></span>
           <div class="input-group rounded-1 mb-3">
             <input
               type="password"
               class="form-control p-3"
               placeholder="كلمة السر"
               aria-label="password"
-              name="password"
+              name="user_password"
               required
               aria-describedby="basic-addon1" />
             <span
@@ -131,7 +131,7 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
               <i class="fa-solid fa-key"></i>
             </span>
           </div>
-          <span class="text-danger fs-8 mb-3 d-block"><?php echo $_SESSION['error']['password'] ?? ''; ?></span>
+          <span class="text-danger fs-8 mb-3 d-block"><?php echo $_SESSION['error']['user_password'] ?? ''; ?></span>
           <button
             class="text-center fs-6 py-2 w-100 bg-black text-white border-0 rounded-1" type="submit">
             حساب جديد
