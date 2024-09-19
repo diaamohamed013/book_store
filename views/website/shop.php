@@ -5,15 +5,30 @@ require_once ROOT_PATH . 'inc/website/header.php';
 require_once ROOT_PATH . 'inc/website/navbar.php';
 
 $db = new Database("localhost", "root", "", "ebook_project");
+$start = 0;
+$rows_per_page = 4;
+
 if (isset($_GET['id'])) {
   $id = $_GET['id'];
   $all_books = "SELECT * FROM `languages` WHERE `id` = '$id'";;
   if (check($all_books)) {
 
-    $all_books = $db->sqlQuery("SELECT `books`.* , `authors`.`author_name` , `languages`.`lang_name` FROM `books` 
+    $records = $db->sqlQuery("SELECT `books`.* , `authors`.`author_name` , `languages`.`lang_name` FROM `books` 
                                       INNER JOIN `authors` ON books.auth_id = authors.id 
                                       INNER JOIN `languages` ON books.lang_id = languages.id 
                                       WHERE `lang_id` = '$id'");
+
+    $nr_of_rows = $records->num_rows;
+    $pages = ceil($nr_of_rows / $rows_per_page);
+    if (isset($_GET['nr_page'])) {
+      $book_page = $_GET['nr_page'] - 1;
+      $start = $book_page * $rows_per_page;
+    }
+
+    $all_books = $db->sqlQuery("SELECT `books`.* , `authors`.`author_name` , `languages`.`lang_name` FROM `books` 
+                                      INNER JOIN `authors` ON books.auth_id = authors.id 
+                                      INNER JOIN `languages` ON books.lang_id = languages.id 
+                                      WHERE `lang_id` = '$id' LIMIT $start , $rows_per_page");
   } else {
     require_once 'views/website/404.php';
     die;
@@ -24,10 +39,23 @@ if (isset($_GET['id'])) {
   //   $name = $_GET['name'];
   //   $str = "WHERE `author_name` = '$name'";
   // }
-  $all_books = $db->sqlQuery("SELECT `books`.* , `authors`.`author_name` , `languages`.`lang_name` FROM `books` 
+  $records = $db->sqlQuery("SELECT `books`.* , `authors`.`author_name` , `languages`.`lang_name` FROM `books` 
                                   INNER JOIN `authors` ON books.auth_id = authors.id 
                                   INNER JOIN `languages` ON books.lang_id = languages.id $str");
+
+  $nr_of_rows = $records->num_rows;
+  $pages = ceil($nr_of_rows / $rows_per_page);
+  if(isset($_GET['nr_page'])){
+    $book_page = $_GET['nr_page'] -1 ;
+    $start = $book_page * $rows_per_page;
+  }
+
+  $all_books = $db->sqlQuery("SELECT `books`.* , `authors`.`author_name` , `languages`.`lang_name` FROM `books` 
+                                  INNER JOIN `authors` ON books.auth_id = authors.id 
+                                  INNER JOIN `languages` ON books.lang_id = languages.id $str LIMIT $start , $rows_per_page");
 }
+
+
 ?>
 
 <main>
@@ -66,14 +94,16 @@ if (isset($_GET['id'])) {
           </div> -->
     <div class="shop__products col-12">
       <div class="d-flex justify-content-between align-items-center mb-4">
-        <p class="m-0">
-          عرض 1
-          -
-          <?php echo $all_books->num_rows; ?>
-          من أصل
-          <?php echo $all_books->num_rows; ?>
-          نتيجة
-        </p>
+        <?php if (isset($_GET['nr_page'])) : ?>
+          <p class="m-0">
+            عرض 1
+            -
+            <?php echo $pages; ?>
+            من أصل
+            <?php echo $records->num_rows; ?>
+            نتيجة
+          </p>
+        <?php endif; ?>
         <form action="">
           <div class="filter__search position-relative">
             <input
@@ -141,16 +171,133 @@ if (isset($_GET['id'])) {
           </div>
         <?php endwhile; ?>
       </div>
+      <?php
+      $str = isset($_GET['id']) ? $_GET['id'] : ""; ?>
+      <?php if (isset($_GET['nr_page'])) : ?>
+        <div
+          class="products__pagination mb-5 d-flex justify-content-center gap-2">
+          <?php if (isset($_GET['id']) && $str == $_GET['id']) : ?>
+            <a href="index.php?page=shop&id=<?= $str ?>&nr_page=1" class="text-decoration-none">
+              <span class="pagination__btn rounded-1">first</span>
+            </a>
+          <?php else: ?>
+            <a href="index.php?page=shop&nr_page=1" class="text-decoration-none">
+              <span class="pagination__btn rounded-1">first</span>
+            </a>
+          <?php endif; ?>
 
-      <div
-        class="products__pagination mb-5 d-flex justify-content-center gap-2">
-        <span class="pagination__btn rounded-1 pagination__btn--next"><i class="fa-solid fa-arrow-right-long"></i></span>
-        <span class="pagination__btn rounded-1 active">1</span>
-        <span class="pagination__btn rounded-1">2</span>
-        <span class="pagination__btn rounded-1">3</span>
-        <span class="pagination__btn rounded-1">4</span>
-        <span class="pagination__btn rounded-1 pagination__btn--prev"><i class="fa-solid fa-arrow-left-long"></i></span>
-      </div>
+          <?php if (isset($_GET['id']) && $str == $_GET['id']) : ?>
+            <?php if (isset($_GET['nr_page'])) : ?>
+              <?php if ($_GET['nr_page'] > 1): ?>
+                <a href="index.php?page=shop&id=<?= $str ?>&nr_page=<?= $_GET['nr_page'] - 1 ?>">
+                  <span class="pagination__btn rounded-1 pagination__btn--next">
+                    <i class="fa-solid fa-arrow-right-long"></i>
+                  </span>
+                </a>
+              <?php else: ?>
+                <a>
+                  <span class="pagination__btn rounded-1 pagination__btn--next">
+                    <i class="fa-solid fa-arrow-right-long"></i>
+                  </span>
+                </a>
+              <?php endif; ?>
+            <?php endif; ?>
+          <?php else: ?>
+            <?php if (isset($_GET['nr_page'])) : ?>
+              <?php if ($_GET['nr_page'] > 1): ?>
+                <a href="index.php?page=shop&nr_page=<?= $_GET['nr_page'] - 1 ?>">
+                  <span class="pagination__btn rounded-1 pagination__btn--next">
+                    <i class="fa-solid fa-arrow-right-long"></i>
+                  </span>
+                </a>
+              <?php else: ?>
+                <a>
+                  <span class="pagination__btn rounded-1 pagination__btn--next">
+                    <i class="fa-solid fa-arrow-right-long"></i>
+                  </span>
+                </a>
+              <?php endif; ?>
+            <?php endif; ?>
+          <?php endif; ?>
+
+          <?php for ($counter = 1; $counter <= $pages; $counter++) : ?>
+            <?php if (isset($_GET['id']) && $str == $_GET['id']) : ?>
+              <a href="index.php?page=shop&id=<?= $str ?>&nr_page=<?= $counter ?>" class="text-decoration-none">
+                <span class="pagination__btn rounded-1 <?= $counter == $_GET['nr_page'] ? "active" : "" ?>">
+                  <?= $counter ?>
+                </span>
+              </a>
+            <?php else : ?>
+              <a href="index.php?page=shop&nr_page=<?= $counter ?>" class="text-decoration-none">
+                <span class="pagination__btn rounded-1 <?= $counter == $_GET['nr_page'] ? "active" : "" ?>">
+                  <?= $counter ?>
+                </span>
+              </a>
+            <?php endif; ?>
+          <?php endfor; ?>
+
+          <?php if (isset($_GET['id']) && $str == $_GET['id']) : ?>
+            <?php if (!isset($_GET['nr_page'])) : ?>
+              <a href="index.php?page=shop&id=<?= $str ?>&nr_page=2">
+                <span class="pagination__btn rounded-1 pagination__btn--prev">
+                  <i class="fa-solid fa-arrow-left-long"></i>
+                </span>
+              </a>
+            <?php else: ?>
+              <?php if (isset($_GET['nr_page'])) : ?>
+                <?php if ($_GET['nr_page'] >= $pages) : ?>
+                  <a>
+                    <span class="pagination__btn rounded-1 pagination__btn--prev">
+                      <i class="fa-solid fa-arrow-left-long"></i>
+                    </span>
+                  </a>
+                <?php else: ?>
+                  <a href="index.php?page=shop&id=<?= $str ?>&nr_page=<?= $_GET['nr_page'] + 1 ?>">
+                    <span class="pagination__btn rounded-1 pagination__btn--prev">
+                      <i class="fa-solid fa-arrow-left-long"></i>
+                    </span>
+                  </a>
+                <?php endif; ?>
+              <?php endif; ?>
+            <?php endif; ?>
+          <?php else: ?>
+            <?php if (!isset($_GET['nr_page'])) : ?>
+              <a href="index.php?page=shop&nr_page=2">
+                <span class="pagination__btn rounded-1 pagination__btn--prev">
+                  <i class="fa-solid fa-arrow-left-long"></i>
+                </span>
+              </a>
+            <?php else: ?>
+              <?php if (isset($_GET['nr_page'])) : ?>
+                <?php if ($_GET['nr_page'] >= $pages) : ?>
+                  <a>
+                    <span class="pagination__btn rounded-1 pagination__btn--prev">
+                      <i class="fa-solid fa-arrow-left-long"></i>
+                    </span>
+                  </a>
+                <?php else: ?>
+                  <a href="index.php?page=shop&nr_page=<?= $_GET['nr_page'] + 1 ?>">
+                    <span class="pagination__btn rounded-1 pagination__btn--prev">
+                      <i class="fa-solid fa-arrow-left-long"></i>
+                    </span>
+                  </a>
+                <?php endif; ?>
+              <?php endif; ?>
+            <?php endif; ?>
+          <?php endif; ?>
+
+          <?php if (isset($_GET['id']) && $str == $_GET['id']) : ?>
+            <a href="index.php?page=shop&nr_page=<?= $pages ?>" class="text-decoration-none">
+              <span class="pagination__btn rounded-1">last</span>
+            </a>
+          <?php else: ?>
+            <a href="index.php?page=shop&nr_page=<?= $pages ?>" class="text-decoration-none">
+              <span class="pagination__btn rounded-1">last</span>
+            </a>
+          <?php endif; ?>
+
+        </div>
+      <?php endif; ?>
     </div>
   </div>
 </main>
