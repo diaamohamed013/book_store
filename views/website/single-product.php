@@ -69,7 +69,7 @@ $auth_name = $single_book['auth_id'];
           </div>
           <a href="<?= url("add-cart&id=" . $single_book['id']) ?>" class="single-product__add-to-cart primary-button w-100 text-decoration-none text-center">اضافه الي السلة</a>
         </div>
-        <a href="<?= url("favourites&id=" . $single_book['id']) ?>">
+        <a href="<?= url("add-favourites&id=" . $single_book['id']) ?>">
           <div class="single-product__favourite d-flex align-items-center gap-2 mb-4">
             <i class="fa-regular fa-heart"></i>
           </div>
@@ -214,7 +214,7 @@ $auth_name = $single_book['auth_id'];
               <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
                 وفر 10%
               </div>
-              <a href="<?= url("favourites&id=" . $row_lang_name['id']) ?>">
+              <a href="<?= url("add-favourites&id=" . $row_lang_name['id']) ?>">
                 <div
                   class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
                   <i class="fa-regular fa-heart"></i>
