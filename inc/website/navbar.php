@@ -57,8 +57,8 @@
                     <div class="position-relative">
                         <i class="fa-regular fa-heart"></i>
                         <div class="nav__link-floating-icon">
-                        <?php if (getSession("cart")): ?>
-                            <?php echo count(getSession("cart")) ?>
+                        <?php if (getSession("favourites")): ?>
+                            <?php echo count(getSession("favourites")) ?>
                         <?php else: ?>
                             0
                         <?php endif; ?>

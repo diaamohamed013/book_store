@@ -135,7 +135,7 @@ if (isset($_GET['id'])) {
                 <?= $book['sale_percentage']; ?>
                 %
               </div>
-              <a href="<?= url("favourites&id=" . $book['id']) ?>">
+              <a href="<?= url("add-favourites&id=" . $book['id']) ?>">
                 <div
                   class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
                   <i class="fa-regular fa-heart"></i>
