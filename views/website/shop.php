@@ -45,8 +45,8 @@ if (isset($_GET['id'])) {
 
   $nr_of_rows = $records->num_rows;
   $pages = ceil($nr_of_rows / $rows_per_page);
-  if(isset($_GET['nr_page'])){
-    $book_page = $_GET['nr_page'] -1 ;
+  if (isset($_GET['nr_page'])) {
+    $book_page = $_GET['nr_page'] - 1;
     $start = $book_page * $rows_per_page;
   }
 
@@ -175,7 +175,7 @@ if (isset($_GET['id'])) {
       $str = isset($_GET['id']) ? $_GET['id'] : ""; ?>
       <?php if (isset($_GET['nr_page'])) : ?>
         <div
-          class="products__pagination mb-5 d-flex justify-content-center gap-2">
+          class="products__pagination mb-5 d-flex justify-content-lg-center justify-content-md-center justify-content-sm-center justify-content-start gap-2" style="overflow-x: auto; overflow-y: hidden;">
           <?php if (isset($_GET['id']) && $str == $_GET['id']) : ?>
             <a href="index.php?page=shop&id=<?= $str ?>&nr_page=1" class="text-decoration-none">
               <span class="pagination__btn rounded-1">first</span>
