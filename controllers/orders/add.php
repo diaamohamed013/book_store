@@ -74,7 +74,11 @@ if (checkRequestMethod('POST') ) {
         
         $total = 0;
         foreach (getSession("cart") as $key => $value) {
-            $total += $value['price'];
+            if($value['sale']){
+            $total += $value['price'] - (($value['price'] * $value['sale']) / 100);
+            }else {
+                $total += $value['price'];
+            }
         }
 
         $sql = "INSERT INTO `orders` (`first_name`,`last_name`, `email`, `info`, `address`,`phone`,`user_id`,`total_price`,`order_number`) 

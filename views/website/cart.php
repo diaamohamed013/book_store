@@ -68,6 +68,37 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
               </tr>
             <?php endforeach; ?>
           </tbody>
+          <tfoot>
+            <!-- Total Row -->
+            <tr>
+              <td colspan="5" class="text-end fw-bold">إجمالي:</td>
+              <td colspan="2" class="text-end fw-bold">
+                <strong>
+                  <?php
+                  $totalPrice = 0;
+                  foreach (getSession('cart') as $item) {
+                    $discountedPrice = $item['price'] - (($item['price'] * $item['sale']) / 100);
+                    $totalPrice += $discountedPrice;
+                  }
+                  echo $totalPrice . ' $';
+                  ?>
+                </strong>
+              
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="7" class="text-end">
+                <a href="<?= url('checkout&id=' . $key) ?>" class="btn btn-primary btn-lg" style="background-color: #20c997; border-color: #20c997;">
+                  إتمام الشراء
+                </a>
+                <a href="<?= url('shop') ?>" class="btn btn-primary btn-lg" style="background-color: #20c997; border-color: #20c997;">
+                  تابع التسوق
+                </a>
+              </td>
+            </tr>
+          </tfoot>
+
         </table>
       <?php else: ?>
         <div class="d-flex justify-content-center align-items-center ">
