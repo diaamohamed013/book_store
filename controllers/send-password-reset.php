@@ -1,7 +1,8 @@
 <?php
 require_once ROOT_PATH . 'src/functions.php';
 require_once ROOT_PATH . 'src/validation.php';
-
+require_once ROOT_PATH . 'inc/website/header.php';
+require_once ROOT_PATH . 'inc/website/navbar.php';
 // Assuming this is your database connection file and it returns a mysqli object
 $email = $_POST["email"];
 $baseUrl = BASE_URL . "index.php?page=";
@@ -52,4 +53,21 @@ if ($conn->affected_rows) {
 
 }
 
-echo "Message sent, please check your inbox.";
+?>
+
+
+<div class="container" style ="margin-top: 10rem; margin-bottom: 10rem">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h3 style ="color: #04a6a8">تم الإرسال</h3>
+            <p style ="color: #000">تم إرسال رابط تعيين كلمة المرور إلى عنوان بريدك الإلكتروني</p>
+        </div>
+    </div>
+</div>
+
+
+
+<?php
+
+
+require_once ROOT_PATH . 'inc/website/footer.php'; ?>

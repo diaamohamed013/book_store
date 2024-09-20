@@ -40,17 +40,10 @@ if (isset($_GET['page'])) {
             require_once 'controllers/login.php';
             break;
         case 'logout':
-<<<<<<< HEAD
-                require_once 'controllers/logout.php';
+            require_once 'controllers/logout.php';
                 break;
         case 'send-password-reset':
                 require_once 'controllers/send-password-reset.php';
-=======
-            require_once 'controllers/logout.php';
-            break;
-        case 'resetpassword':
-                require_once 'controllers/resetpassword.php';
->>>>>>> 5f1726f76023e903c764d0e7bc9f6ef156ef84a0
                 break;
         case isset($_GET['token']) && 'reset-password&token=' . $_GET['token']:
                 require_once 'controllers/reset-password.php';
