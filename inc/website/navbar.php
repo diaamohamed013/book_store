@@ -45,7 +45,11 @@
                     <a class="nav-icon position-relative text-decoration-none" href="<?php echo url("logout"); ?>">
                         <i class="fa fa-fw fa-sign-out-alt text-dark mr-3"></i>
                     </a>
+                    <a class="nav-icon position-relative text-decoration-none" href="<?php echo url("orders"); ?>">
+                        <i class="fa fa-fw fa-box text-dark mr-3"></i>
+                    </a>
                 <?php endif; ?>
+
             </li>
             <li class="nav__link">
                 <a class="d-flex align-items-center gap-2" href="<?= url("favourites") ?>">
@@ -53,18 +57,26 @@
                     <div class="position-relative">
                         <i class="fa-regular fa-heart"></i>
                         <div class="nav__link-floating-icon">
+                        <?php if (getSession("favourites")): ?>
+                            <?php echo count(getSession("favourites")) ?>
+                        <?php else: ?>
                             0
+                        <?php endif; ?>
                         </div>
                     </div>
                 </a>
             </li>
             <li class="nav__link">
-                <a class="d-flex align-items-center gap-2" data-bs-toggle="offcanvas" data-bs-target="#nav__cart">
+                <a href="<?= url('cart')?>" class="d-flex align-items-center gap-2" data-bs-target="#nav__cart">
                     عربة التسوق
                     <div class="position-relative">
                         <i class="fa-solid fa-cart-shopping"></i>
                         <div class="nav__link-floating-icon">
+                        <?php if (getSession("cart")): ?>
+                            <?php echo count(getSession("cart")) ?>
+                        <?php else: ?>
                             0
+                        <?php endif; ?>
                         </div>
                     </div>
                 </a>
@@ -81,8 +93,10 @@
             </li>
             <li class="nav-mobile__link d-flex align-items-center flex-column gap-1" data-bs-toggle="offcanvas"
                 data-bs-target="#nav__categories">
+                <a class="d-flex align-items-center flex-column gap-1 text-decoration-none" href="<?= url("shop") ?>">
                 <i class="fa-solid fa-align-center fa-rotate-180"></i>
                 الاقسام
+                </a>
             </li>
             <li class="nav-mobile__link d-flex align-items-center flex-column gap-1">
                 <a class="d-flex align-items-center flex-column gap-1 text-decoration-none" href="<?= url("profile") ?>">
@@ -98,8 +112,10 @@
             </li>
             <li class="nav-mobile__link d-flex align-items-center flex-column gap-1" data-bs-toggle="offcanvas"
                 data-bs-target="#nav__cart">
+                <a class="d-flex align-items-center flex-column gap-1 text-decoration-none" href="<?= url("cart") ?>">
                 <i class="fa-solid fa-cart-shopping"></i>
                 السلة
+                </a>
             </li>
         </ul>
         <!--  -->
@@ -120,7 +136,7 @@
         </div>
         <ul class="nav__list list-unstyled">
             <li class="nav__link nav__side-link">
-                <a href="<?= url("shop") ?>" class="py-3">
+                <a href="index.php?page=shop&nr_page=1" class="py-3">
                     جميع المنتجات
                 </a>
             </li>
@@ -128,51 +144,17 @@
             $select_language = "SELECT `id`,`lang_name` FROM `languages`";
             $result_language = mysqli_query($conn, $select_language);
             foreach ($result_language as $row_language) : ?>
-                    <li class="nav__link nav__side-link">
-                        <a href="<?= url("shop&id=" . $row_language['id']) ?>" class="py-3">
-                            <?php echo $row_language['lang_name']; ?>
-                        </a>
-                    </li>
+                <li class="nav__link nav__side-link">
+                    <a href="index.php?page=shop&id=<?= $row_language['id'] ?>&nr_page=1" class="py-3">
+                        <?php echo $row_language['lang_name']; ?>
+                    </a>
+                </li>
             <?php endforeach; ?>
         </ul>
     </div>
 </div>
 
-<div class="nav__cart offcanvas offcanvas-end px-3 py-2" tabindex="-1" id="nav__cart" aria-labelledby="nav__cart">
-    <div class="nav__categories-header offcanvas-header align-items-center">
-        <h5>سلة التسوق</h5>
-        <button type="button" class="border-0 bg-transparent text-danger nav__close" data-bs-dismiss="offcanvas"
-            aria-label="Close">
-            <i class="fa-solid fa-x fa-1x fw-light"></i>
-        </button>
-    </div>
-    <div class="nav__categories-body offcanvas-body pt-4">
-        <p>لا توجد منتجات في سلة المشتريات.</p>
-        <div class="cart-products">
-            <ul class="nav__list list-unstyled">
-                <li class="cart-products__item d-flex justify-content-between gap-2">
-                    <div class="d-flex gap-2">
-                        <div>
-                            <button class="cart-products__remove">x</button>
-                        </div>
-                        <div>
-                            <p class="cart-products__name m-0 fw-bolder">Flutter Apprentice</p>
-                            <p class="cart-products__price m-0">1 x 350.00 جنيه</p>
-                        </div>
-                    </div>
-                    <div class="cart-products__img">
-                        <img class="w-100" src="assets/images/product-1.webp" alt="">
-                    </div>
-                </li>
-            </ul>
-            <div class="d-flex justify-content-between">
-                <p class="fw-bolder">المجموع:</p>
-                <p>350.00 جنيه</p>
-            </div>
-        </div>
-        <button class="nav__cart-btn text-center text-white w-100 border-0 mb-3 py-2 px-3 bg-success">اتمام الطلب</button>
-        <button class="nav__cart-btn text-center w-100 py-2 px-3 bg-transparent">تابع التسوق</button>
-    </div>
+
 </div>
 </div>
 <!-- News Content Start -->
