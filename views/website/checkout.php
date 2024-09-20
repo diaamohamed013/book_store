@@ -21,15 +21,21 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
   <section class="section-container my-5 py-5 d-lg-flex">
     <div class="checkout__form-cont w-50 px-3 mb-5">
       <h4>الفاتورة </h4>
-      <form class="checkout__form" action="">
+      <form class="checkout__form" action="<?= url('add-order') ?>"  method="post" >
         <div class="d-flex gap-3 mb-3">
           <div class="w-50">
             <label for="first-name">الاسم الأول <span class="required">*</span></label>
-            <input class="form__input" type="text" id="first-name" />
+            <input class="form__input" type="text" id="first-name"name="fname" />
+            <span class="text-danger">
+                        <?php echo $_SESSION['error']['fname'] ?? ''; ?>
+                    </span>
           </div>
           <div class="w-50">
             <label for="last-name">الاسم الأخير <span class="required">*</span></label>
-            <input class="form__input" type="text" id="last-name" />
+            <input class="form__input" type="text" id="last-name" name="lname"/>
+            <span class="text-danger">
+                        <?php echo $_SESSION['error']['lname'] ?? ''; ?>
+                    </span>
           </div>
         </div>
         <div class="mb-3">
@@ -49,15 +55,25 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
             class="form__input"
             placeholder="رقم المنزل او الشارع / الحي"
             type="text"
-            id="last-name" />
+            id="last-name"
+            name="address" />
+            <span class="text-danger">
+                        <?php echo $_SESSION['error']['address'] ?? ''; ?>
+                    </span>
         </div>
         <div class="mb-3">
           <label for="last-name">رقم الهاتف<span class="required">*</span></label>
-          <input class="form__input" type="text" id="last-name" />
+          <input class="form__input" type="text" id="last-name" name="phone" />
+          <span class="text-danger">
+                        <?php echo $_SESSION['error']['phone'] ?? ''; ?>
+                    </span>
         </div>
         <div class="mb-3">
           <label for="last-name">البريد الإلكتروني (اختياري)<span class="required">*</span></label>
-          <input class="form__input" type="text" id="last-name" />
+          <input class="form__input" type="text" id="last-name" name="email" />
+          <span class="text-danger">
+                        <?php echo $_SESSION['error']['email'] ?? ''; ?>
+                    </span>
         </div>
         <div class="mb-3">
           <h2>معلومات اضافية</h2>
@@ -66,7 +82,10 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
             class="form__input"
             placeholder="ملاحظات حول الطلب, مثال: ملحوظة خاصة بتسليم الطلب."
             type="text"
-            id="last-name"></textarea>
+            id="last-name" name="info"></textarea>
+            <span class="text-danger">
+                        <?php echo $_SESSION['error']['info'] ?? ''; ?>
+                    </span>
         </div>
         <button class="primary-button w-100 py-2">تاكيد الطلب</button>
       </form>
@@ -133,4 +152,6 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
 </main>
 
 <?php
+ unset($_SESSION['error']); 
+
 require_once ROOT_PATH . 'inc/website/footer.php'; ?>

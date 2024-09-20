@@ -45,6 +45,7 @@ if (checkRequestMethod('POST') && checkInput("user_name")) {
                 'name' => $user_name,
                 'email' => $user_email
             ];
+            echo $id;
             $_SESSION['success'] = "Your data has been sent successfully";
         }
         redirect("home");
