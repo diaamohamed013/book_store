@@ -39,11 +39,17 @@ if (isset($_GET['page'])) {
         case 'logout':
                 require_once 'controllers/logout.php';
                 break;
-        case 'resetpassword':
-                require_once 'controllers/resetpassword.php';
+        case 'send-password-reset':
+                require_once 'controllers/send-password-reset.php';
                 break;
-        case 'update-password':
-                require_once 'controllers/update-password.php';
+        case isset($_GET['token']) && 'reset-password&token=' . $_GET['token']:
+                require_once 'controllers/reset-password.php';
+                break;
+        case 'process-reset-password':
+                require_once 'controllers/process-reset-password.php';
+                break;
+        case 'mail':
+                require_once 'controllers/mail.php';
                 break;
         case 'branches':
             require_once 'views/website/branches.php';
