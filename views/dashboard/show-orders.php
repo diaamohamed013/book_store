@@ -57,13 +57,13 @@ $orders = getAll("orders");
                                             </td>
                                             <td>
                                                 <a class="btn text-info" href="<?php echo url("view-order&id=" . $order['id']) ?>">
-                                                    View
+                                                    <i class="fas fa-eye"></i>
                                                 </a>
                                                 <a class="btn text-primary" href="<?php echo url("process-order&id=" . $order['id']) ?>">
-                                                    Complete
+                                                    <i class="fas fa-check"></i>
                                                 </a>
-                                                <a class="btn text-danger" href="<?php echo url("cancel-order&id=" . $order['id']) ?>">
-                                                    Close
+                                                <a class="btn text-success" href="<?php echo url("deliver-order&id=" . $order['id']) ?>">
+                                                    <i class="fas fa-truck"></i>
                                                 </a>
                                             </td>
                                         </tr>

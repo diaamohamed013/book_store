@@ -18,6 +18,9 @@ if (isset($_GET['page'])) {
         case "shop":
             require_once 'views/website/shop.php';
             break;
+        case "cart":
+            require_once 'views/website/cart.php';
+            break;
         case 'account_details':
             require_once 'views/website/account_details.php';
             break;
@@ -31,16 +34,23 @@ if (isset($_GET['page'])) {
             require_once 'views/website/account.php';
             break;
         case 'send-user':
-                require_once 'controllers/send-user.php';
-                break;
+            require_once 'controllers/send-user.php';
+            break;
         case 'login':
-                require_once 'controllers/login.php';
-                break;       
+            require_once 'controllers/login.php';
+            break;
         case 'logout':
+<<<<<<< HEAD
                 require_once 'controllers/logout.php';
                 break;
         case 'send-password-reset':
                 require_once 'controllers/send-password-reset.php';
+=======
+            require_once 'controllers/logout.php';
+            break;
+        case 'resetpassword':
+                require_once 'controllers/resetpassword.php';
+>>>>>>> 5f1726f76023e903c764d0e7bc9f6ef156ef84a0
                 break;
         case isset($_GET['token']) && 'reset-password&token=' . $_GET['token']:
                 require_once 'controllers/reset-password.php';
@@ -113,6 +123,15 @@ if (isset($_GET['page'])) {
         case 'store-lang':
             require_once 'controllers/dashboard/books/addLang.php';
             break;
+        case 'view-order':
+            require_once 'views/dashboard/orders/view-order.php';
+            break;
+        case 'process-order':
+            require_once 'controllers/dashboard/orders/process-order.php';
+            break;
+        case 'deliver-order':
+            require_once 'controllers/dashboard/orders/deliver-order.php';
+            break;
             //categories
         case 'store-cat':
             require_once 'controllers/dashboard/categories/store-cat.php';
@@ -163,9 +182,23 @@ if (isset($_GET['page'])) {
             require_once 'views/dashboard/show-messages.php';
             break;
             //orders
-            case 'allOrders':
-                require_once 'views/dashboard/show-orders.php';
-                break;
+        case 'allOrders':
+            require_once 'views/dashboard/show-orders.php';
+            break;
+            //cart
+        case 'add-cart':
+            require_once 'controllers/cart/add.php';
+            break;
+        case 'remove':
+            require_once 'controllers/cart/remove.php';
+            break;
+            //favourites
+        case 'add-favourites':
+            require_once 'controllers/favourites/add.php';
+            break;
+        case 'remove-favourites':
+            require_once 'controllers/favourites/remove.php';
+            break;
             //not found
         default:
             require_once 'views/website/404.php';

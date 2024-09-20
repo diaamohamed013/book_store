@@ -43,7 +43,7 @@ $new_Arrival_books = $db->sqlQuery("SELECT `books`.*  , `authors`.`author_name` 
       <div class="offer__title fw-bolder">
         عروض اليوم
       </div>
-      <div class="offer__time d-flex gap-2 fs-6">
+      <div class="offer__time d-flex gap-2 fs-6">`
         <div class="d-flex flex-column align-items-center">
           <span class="fw-bolder">06</span>
           <div>ساعات</div>
@@ -77,7 +77,7 @@ $new_Arrival_books = $db->sqlQuery("SELECT `books`.*  , `authors`.`author_name` 
               <?= $book['sale_percentage']; ?>
               %
             </div>
-            <a href="<?= url("favourites&id=" . $book['id']) ?>">
+            <a href="<?= url("add-favourites&id=" . $book['id']) ?>">
               <div
                 class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
                 <i class="fa-regular fa-heart"></i>
@@ -154,7 +154,7 @@ $new_Arrival_books = $db->sqlQuery("SELECT `books`.*  , `authors`.`author_name` 
               <?= $book['sale_percentage']; ?>
               %
             </div>
-            <a href="<?= url("favourites&id=" . $book['id']) ?>">
+            <a href="<?= url("add-favourites&id=" . $book['id']) ?>">
               <div
                 class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
                 <i class="fa-regular fa-heart"></i>
@@ -210,7 +210,7 @@ $new_Arrival_books = $db->sqlQuery("SELECT `books`.*  , `authors`.`author_name` 
               <?= $book['sale_percentage']; ?>
               %
             </div>
-            <a href="<?= url("favourites&id=" . $book['id']) ?>">
+            <a href="<?= url("add-favourites&id=" . $book['id']) ?>">
               <div
                 class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
                 <i class="fa-regular fa-heart"></i>
