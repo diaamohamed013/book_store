@@ -43,8 +43,11 @@ if (isset($_GET['page'])) {
             require_once 'controllers/logout.php';
             break;
         case 'resetpassword':
-            require_once 'controllers/resetpassword.php';
-            break;
+                require_once 'controllers/resetpassword.php';
+                break;
+        case 'update-password':
+                require_once 'controllers/update-password.php';
+                break;
         case 'branches':
             require_once 'views/website/branches.php';
             break;
