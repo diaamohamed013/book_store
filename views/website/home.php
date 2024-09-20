@@ -77,7 +77,7 @@ $new_Arrival_books = $db->sqlQuery("SELECT `books`.*  , `authors`.`author_name` 
               <?= $book['sale_percentage']; ?>
               %
             </div>
-            <a href="<?= url("favourites&id=" . $book['id']) ?>">
+            <a href="<?= url("add-favourites&id=" . $book['id']) ?>">
               <div
                 class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
                 <i class="fa-regular fa-heart"></i>
@@ -154,7 +154,7 @@ $new_Arrival_books = $db->sqlQuery("SELECT `books`.*  , `authors`.`author_name` 
               <?= $book['sale_percentage']; ?>
               %
             </div>
-            <a href="<?= url("favourites&id=" . $book['id']) ?>">
+            <a href="<?= url("add-favourites&id=" . $book['id']) ?>">
               <div
                 class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
                 <i class="fa-regular fa-heart"></i>
@@ -210,7 +210,7 @@ $new_Arrival_books = $db->sqlQuery("SELECT `books`.*  , `authors`.`author_name` 
               <?= $book['sale_percentage']; ?>
               %
             </div>
-            <a href="<?= url("favourites&id=" . $book['id']) ?>">
+            <a href="<?= url("add-favourites&id=" . $book['id']) ?>">
               <div
                 class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
                 <i class="fa-regular fa-heart"></i>

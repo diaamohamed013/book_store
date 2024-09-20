@@ -1,6 +1,6 @@
 <?php
 if (!getSession("auth")) {
-  redirect('home');
+  redirect('account');
 }
 require_once ROOT_PATH . 'inc/website/header.php';
 require_once ROOT_PATH . 'inc/website/navbar.php';
@@ -53,9 +53,9 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
       <div class="profile__tab-content orders active">
         <div class="orders__none d-flex justify-content-between align-items-center py-3 px-4">
           <p class="m-0">لم يتم تنفيذ اي طلب بعد.</p>
-          <button class="primary-button">تصفح المنتجات</button>
+          <a class="primary-button text-decoration-none" href="<?= url('shop') ?>">تصفح المنتجات</a>
         </div>
-
+        <?php $orders = getAll("orders"); ?>
         <table class="orders__table w-100">
           <thead>
             <th class="d-none d-md-table-cell">الطلب</th>
@@ -65,50 +65,53 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
             <th class="d-none d-md-table-cell">اجراءات</th>
           </thead>
           <tbody>
-            <tr class="order__item">
-              <td class="d-flex justify-content-between d-md-table-cell">
-                <div class="fw-bolder d-md-none">الطلب:</div>
-                <div><a href="">#79574</a></div>
-              </td>
-              <td class="d-flex justify-content-between d-md-table-cell">
-                <div class="fw-bolder d-md-none">التاريخ:</div>
-                <div>يوليو 25, 2023</div>
-              </td>
-              <td class="d-flex justify-content-between d-md-table-cell">
-                <div class="fw-bolder d-md-none">الحالة:</div>
-                <div>قيد التنفيذ</div>
-              </td>
-              <td class="d-flex justify-content-between d-md-table-cell">
-                <div class="fw-bolder d-md-none">الاجمالي:</div>
-                <div>239.0 جنيه لعنصر واحد</div>
-              </td>
-              <td class="d-flex justify-content-between d-md-table-cell">
-                <div class="fw-bolder d-md-none">اجراءات:</div>
-                <div><a class="primary-button" href="">عرض</a></div>
-              </td>
-            </tr>
-            <tr class="order__item">
-              <td class="d-flex justify-content-between d-md-table-cell">
-                <div class="d-md-none">الطلب:</div>
-                <div><a href="">#79574</a></div>
-              </td>
-              <td class="d-flex justify-content-between d-md-table-cell">
-                <div class="d-md-none">التاريخ:</div>
-                <div>يوليو 25, 2023</div>
-              </td>
-              <td class="d-flex justify-content-between d-md-table-cell">
-                <div class="d-md-none">الحالة:</div>
-                <div>قيد التنفيذ</div>
-              </td>
-              <td class="d-flex justify-content-between d-md-table-cell">
-                <div class="d-md-none">الاجمالي:</div>
-                <div>239.0 جنيه لعنصر واحد</div>
-              </td>
-              <td class="d-flex justify-content-between d-md-table-cell">
-                <div class="d-md-none">اجراءات:</div>
-                <div><a class="primary-button" href="">عرض</a></div>
-              </td>
-            </tr>
+            <?php
+            while ($order = mysqli_fetch_assoc($orders)) : ?>
+              <tr class="order__item">
+                <td class="d-flex justify-content-between d-md-table-cell">
+                  <div class="fw-bolder d-md-none">الطلب:</div>
+                  <div>
+                    <a href="<?php echo url("order_details&order_id=" . $order['id']) ?>">
+                      <?= $order['order_number'] ?>
+                    </a>
+                  </div>
+                </td>
+                <td class="d-flex justify-content-between d-md-table-cell">
+                  <div class="fw-bolder d-md-none">التاريخ:</div>
+                  <div>
+                    <?= $order['created_at']; ?>
+                  </div>
+                </td>
+                <td class="d-flex justify-content-between d-md-table-cell">
+                  <div class="fw-bolder d-md-none">الحالة:</div>
+                  <div>
+                    <?php if ($order['status'] == 'pending'): ?>
+                      قيد الانتظار
+                    <?php elseif ($order['status'] == 'processing'): ?>
+                      قيد التحضير
+                    <?php elseif ($order['status'] == 'delivered'): ?>
+                      تم التوصيل
+                    <?php elseif ($order['status'] == 'shipped'): ?>
+                      تم الشحن 
+                    <?php else: ?>
+                      لم يتم تحد حالة الطلب
+                    <?php endif; ?>
+                  </div>
+                </td>
+                <td class="d-flex justify-content-between d-md-table-cell">
+                  <div class="fw-bolder d-md-none">الاجمالي:</div>
+                  <div>
+                    <?= $order['total_price'] ?> $
+                  </div>
+                </td>
+                <td class="d-flex justify-content-between d-md-table-cell">
+                  <div class="fw-bolder d-md-none">اجراءات:</div>
+                  <div>
+                    <a class="primary-button text-decoration-none" href="<?php echo url("order_details&order_id=" . $order['id']) ?>">عرض</a>
+                  </div>
+                </td>
+              </tr>
+            <?php endwhile; ?>
           </tbody>
         </table>
       </div>

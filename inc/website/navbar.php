@@ -57,8 +57,8 @@
                     <div class="position-relative">
                         <i class="fa-regular fa-heart"></i>
                         <div class="nav__link-floating-icon">
-                        <?php if (getSession("cart")): ?>
-                            <?php echo count(getSession("cart")) ?>
+                        <?php if (getSession("favourites")): ?>
+                            <?php echo count(getSession("favourites")) ?>
                         <?php else: ?>
                             0
                         <?php endif; ?>
@@ -136,7 +136,7 @@
         </div>
         <ul class="nav__list list-unstyled">
             <li class="nav__link nav__side-link">
-                <a href="<?= url("shop") ?>" class="py-3">
+                <a href="index.php?page=shop&nr_page=1" class="py-3">
                     جميع المنتجات
                 </a>
             </li>
@@ -144,11 +144,11 @@
             $select_language = "SELECT `id`,`lang_name` FROM `languages`";
             $result_language = mysqli_query($conn, $select_language);
             foreach ($result_language as $row_language) : ?>
-                    <li class="nav__link nav__side-link">
-                        <a href="<?= url("shop&id=" . $row_language['id']) ?>" class="py-3">
-                            <?php echo $row_language['lang_name']; ?>
-                        </a>
-                    </li>
+                <li class="nav__link nav__side-link">
+                    <a href="index.php?page=shop&id=<?= $row_language['id'] ?>&nr_page=1" class="py-3">
+                        <?php echo $row_language['lang_name']; ?>
+                    </a>
+                </li>
             <?php endforeach; ?>
         </ul>
     </div>

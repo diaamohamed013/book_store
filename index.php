@@ -107,6 +107,15 @@ if (isset($_GET['page'])) {
         case 'store-lang':
             require_once 'controllers/dashboard/books/addLang.php';
             break;
+        case 'view-order':
+            require_once 'views/dashboard/orders/view-order.php';
+            break;
+        case 'process-order':
+            require_once 'controllers/dashboard/orders/process-order.php';
+            break;
+        case 'deliver-order':
+            require_once 'controllers/dashboard/orders/deliver-order.php';
+            break;
             //categories
         case 'store-cat':
             require_once 'controllers/dashboard/categories/store-cat.php';
@@ -167,10 +176,16 @@ if (isset($_GET['page'])) {
         case 'remove':
             require_once 'controllers/cart/remove.php';
             break;
-            case 'add-order':
-                require_once 'controllers/orders/add.php';
-                break;
-
+        case 'add-order':
+            require_once 'controllers/orders/add.php';
+            break;
+            //favourites
+        case 'add-favourites':
+            require_once 'controllers/favourites/add.php';
+            break;
+        case 'remove-favourites':
+            require_once 'controllers/favourites/remove.php';
+            break;
             //not found
         default:
             require_once 'views/website/404.php';

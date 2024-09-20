@@ -6,7 +6,7 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
 $db = new Database("localhost", "root", "", "ebook_project");
 
 $id = $_GET['id'];
-$single_book = $db->fetchAssociate("SELECT * FROM books WHERE id = '$id'");
+$single_book = $db->fetchAssociate("SELECT * FROM `books` WHERE `id` = '$id'");
 $category = $single_book['category_id'];
 $lang_name = $single_book['lang_id'];
 $auth_name = $single_book['auth_id'];
@@ -25,7 +25,7 @@ $auth_name = $single_book['auth_id'];
         <h4><?= $single_book['title'] ?></h4>
         <div class="product__author">
           <?php
-          $select_auth_name = "SELECT id,author_name FROM authors";
+          $select_auth_name = "SELECT `id`,`author_name` FROM `authors`";
           $result_auth_name = mysqli_query($conn, $select_auth_name);
           foreach ($result_auth_name as $row_auth_name) : ?>
             <?php if ($auth_name == $row_auth_name['id']) : ?>
@@ -35,7 +35,7 @@ $auth_name = $single_book['auth_id'];
         </div>
         <div class="product__author text-primary">
           <?php
-          $select_lang_name = "SELECT id,lang_name FROM languages";
+          $select_lang_name = "SELECT `id`,`lang_name` FROM `languages`";
           $result_lang_name = mysqli_query($conn, $select_lang_name);
           foreach ($result_lang_name as $row_lang_name) : ?>
             <?php if ($lang_name == $row_lang_name['id']) : ?>
@@ -52,7 +52,7 @@ $auth_name = $single_book['auth_id'];
           </p>
         </div>
         <div class="product__price mb-3 text-center d-flex gap-2">
-          <span class="product_price product_price--old fs-6 <?php echo $single_book['sale_percentage'] > 0 ? "d-block" : "d-none" ?>">
+          <span class="product__price product__price--old fs-6 <?php echo $single_book['sale_percentage'] > 0 ? "d-block" : "d-none" ?>">
             <?= $single_book['price']; ?>
             $
           </span>
@@ -69,7 +69,7 @@ $auth_name = $single_book['auth_id'];
           </div>
           <a href="<?= url("add-cart&id=" . $single_book['id']) ?>" class="single-product__add-to-cart primary-button w-100 text-decoration-none text-center">اضافه الي السلة</a>
         </div>
-        <a href="<?= url("favourites&id=" . $single_book['id']) ?>">
+        <a href="<?= url("add-favourites&id=" . $single_book['id']) ?>">
           <div class="single-product__favourite d-flex align-items-center gap-2 mb-4">
             <i class="fa-regular fa-heart"></i>
           </div>
@@ -198,9 +198,9 @@ $auth_name = $single_book['auth_id'];
     </div>
     <div class="row">
       <?php
-      $select_lang_name = "SELECT books.* , authors.author_name , languages.lang_name FROM books 
-                                  INNER JOIN authors ON books.auth_id = authors.id 
-                                  INNER JOIN languages ON books.lang_id = languages.id";
+      $select_lang_name = "SELECT `books`.* , `authors`.`author_name` , `languages`.`lang_name` FROM `books` 
+                                  INNER JOIN `authors` ON books.auth_id = authors.id 
+                                  INNER JOIN `languages` ON books.lang_id = languages.id";
       $result_lang_name = mysqli_query($conn, $select_lang_name);
       foreach ($result_lang_name as $row_lang_name) : ?>
         <?php if ($lang_name == $row_lang_name['lang_id']) : ?>
@@ -214,7 +214,7 @@ $auth_name = $single_book['auth_id'];
               <div class="product__sale position-absolute top-0 start-0 m-1 px-2 py-1 rounded-1 text-white">
                 وفر 10%
               </div>
-              <a href="<?= url("favourites&id=" . $row_lang_name['id']) ?>">
+              <a href="<?= url("add-favourites&id=" . $row_lang_name['id']) ?>">
                 <div
                   class="product__favourite position-absolute top-0 end-0 m-1 rounded-circle d-flex justify-content-center align-items-center bg-white">
                   <i class="fa-regular fa-heart"></i>
@@ -236,7 +236,7 @@ $auth_name = $single_book['auth_id'];
             </div>
             <div
               class="product__price text-center d-flex gap-2 justify-content-center flex-wrap">
-              <span class="product_price product_price--old <?php echo $row_lang_name['sale_percentage'] > 0 ? "d-block" : "d-none" ?>">
+              <span class="product__price product__price--old <?php echo $row_lang_name['sale_percentage'] > 0 ? "d-block" : "d-none" ?>">
                 <?= $row_lang_name['price']; ?>
                 $
               </span>

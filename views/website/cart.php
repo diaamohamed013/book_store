@@ -26,8 +26,8 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
 
   <div class="my-5 py-5">
     <section class="section-container favourites">
-      <table class="w-100">
-        <?php if (getSession('cart')): ?>
+      <?php if (getSession('cart')): ?>
+        <table class="w-100">
           <thead>
             <th class="d-none d-md-table-cell"></th>
             <th class="d-none d-md-table-cell"></th>
@@ -51,7 +51,6 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
                 </td>
 
                 <td class=""><?= $value['title'] ?> </td>
-                </td>
                 <td class="d-block d-md-table-cell">
                   <span class="product__price product__price--old"><?= $value['price'] ?> جنية</span>
                   <span class="product__price"><?= $value['price'] - (($value['price'] * $value['sale']) / 100) ?> جنية</span>
@@ -66,50 +65,17 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
                   <span class="me-2"><i class="fa-solid fa-check"></i></span>
                   <span class="d-inline-block d-md-none d-lg-inline-block">متوفر بالمخزون</span>
                 </td>
-              <?php endforeach; ?>
               </tr>
-
+            <?php endforeach; ?>
           </tbody>
-          <tfoot>
-  <!-- Total Row -->
-  <tr>
-    <td colspan="5" class="text-end fw-bold">إجمالي:</td>
-    <td colspan="2" class="text-end fw-bold">
-      <strong>
-        <?php 
-          $totalPrice = 0;
-          foreach (getSession('cart') as $item) {
-            $discountedPrice = $item['price'] - (($item['price'] * $item['sale']) / 100);
-            $totalPrice += $discountedPrice;
-          }
-          echo $totalPrice . ' جنيه';
-        ?>
-      </strong>
-    </td>
-  </tr>
- 
-  <tr>
-    <td colspan="7" class="text-end">
-      <a href="<?= url('checkout&id=' . $key) ?>" class="btn btn-primary btn-lg" style="background-color: #20c997; border-color: #20c997;">
-        إتمام الشراء
-        </a>
-        <a href="<?= url('shop') ?>" class="btn btn-primary btn-lg" style="background-color: #20c997; border-color: #20c997;">
-         تابع التسوق
-        </a>
-    </td>
-  </tr>
-</tfoot>
-
-
-
-      </table>
-    <?php else: ?>
-      <div class="d-flex justify-content-center align-items-center ">
-        <div class="page-center__title mb-3">
-          <h2>لاتوجد منتجات في عربة التسوق</h2>
+        </table>
+      <?php else: ?>
+        <div class="d-flex justify-content-center align-items-center ">
+          <div class="page-center__title mb-3">
+            <h2>لاتوجد منتجات في عربة التسوق</h2>
+          </div>
         </div>
-      </div>
-    <?php endif; ?>
+      <?php endif; ?>
     </section>
   </div>
 
