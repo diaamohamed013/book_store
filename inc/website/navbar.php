@@ -57,26 +57,26 @@
                     <div class="position-relative">
                         <i class="fa-regular fa-heart"></i>
                         <div class="nav__link-floating-icon">
-                        <?php if (getSession("favourites")): ?>
-                            <?php echo count(getSession("favourites")) ?>
-                        <?php else: ?>
-                            0
-                        <?php endif; ?>
+                            <?php if (getSession("favourites")): ?>
+                                <?php echo count(getSession("favourites")) ?>
+                            <?php else: ?>
+                                0
+                            <?php endif; ?>
                         </div>
                     </div>
                 </a>
             </li>
             <li class="nav__link">
-                <a href="<?= url('cart')?>" class="d-flex align-items-center gap-2" data-bs-target="#nav__cart">
+                <a href="<?= url('cart') ?>" class="d-flex align-items-center gap-2" data-bs-target="#nav__cart">
                     عربة التسوق
                     <div class="position-relative">
                         <i class="fa-solid fa-cart-shopping"></i>
                         <div class="nav__link-floating-icon">
-                        <?php if (getSession("cart")): ?>
-                            <?php echo count(getSession("cart")) ?>
-                        <?php else: ?>
-                            0
-                        <?php endif; ?>
+                            <?php if (getSession("cart")): ?>
+                                <?php echo count(getSession("cart")) ?>
+                            <?php else: ?>
+                                0
+                            <?php endif; ?>
                         </div>
                     </div>
                 </a>
@@ -93,9 +93,9 @@
             </li>
             <li class="nav-mobile__link d-flex align-items-center flex-column gap-1" data-bs-toggle="offcanvas"
                 data-bs-target="#nav__categories">
-                <a class="d-flex align-items-center flex-column gap-1 text-decoration-none" href="<?= url("shop") ?>">
-                <i class="fa-solid fa-align-center fa-rotate-180"></i>
-                الاقسام
+                <a class="d-flex align-items-center flex-column gap-1 text-decoration-none" href="index.php?page=shop&nr_page=1">
+                    <i class="fa-solid fa-align-center fa-rotate-180"></i>
+                    الاقسام
                 </a>
             </li>
             <li class="nav-mobile__link d-flex align-items-center flex-column gap-1">
@@ -113,8 +113,8 @@
             <li class="nav-mobile__link d-flex align-items-center flex-column gap-1" data-bs-toggle="offcanvas"
                 data-bs-target="#nav__cart">
                 <a class="d-flex align-items-center flex-column gap-1 text-decoration-none" href="<?= url("cart") ?>">
-                <i class="fa-solid fa-cart-shopping"></i>
-                السلة
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    السلة
                 </a>
             </li>
         </ul>
