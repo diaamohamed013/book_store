@@ -96,7 +96,7 @@ if (checkRequestMethod('POST')) {
             $_SESSION['added-to-order'] = "Your Order has been sent successfully";
 
             unset($_SESSION['cart']);
-            redirect("checkout");
+            redirect("order_details&order_id=".$order_id);
         }
  
         redirect("checkout");
