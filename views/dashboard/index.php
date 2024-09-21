@@ -1,6 +1,8 @@
-<?php 
+<?php
 
-
+if (!getSession("dash-auth")) {
+  redirect('login-dashboard');
+}
 require_once ROOT_PATH . 'inc/dashboard/header.php';
 require_once ROOT_PATH . 'inc/dashboard/navbar.php';
 ?>

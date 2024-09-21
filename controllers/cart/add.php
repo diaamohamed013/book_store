@@ -17,4 +17,4 @@ $_SESSION['cart'][$product['id']]=$cart_item;
 $_SESSION['added-to-cart']="item is added to cart"; 
 
 
-redirect('cart');
+redirect('shop&nr_page=1');
