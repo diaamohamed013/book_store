@@ -30,6 +30,12 @@ if (checkRequestMethod('POST') && checkInput("user_name")) {
         $errors['user_email'] = "Email is required";
     } elseif (!emailValid($user_email)) {
         $errors['user_email'] = "please enter a valid email";
+    } else {
+        $sql = "SELECT * FROM users WHERE email = '$user_email'";
+        $result = mysqli_query($conn, $sql);
+        if (mysqli_num_rows($result) > 0) {
+            $errors['user_email'] = "Email already exists";
+        }
     }
 
     if (!empty($errors)) {

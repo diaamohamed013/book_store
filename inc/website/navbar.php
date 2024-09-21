@@ -11,10 +11,11 @@
             </a>
         </div>
         <div class="nav__search w-50">
-            <input class="nav__search-input w-100" type="search" placeholder="أبحث هنا عن اي شئ تريده...">
+            <input class="nav__search-input w-100" id="search" type="search" placeholder="أبحث هنا عن اي شئ تريده...">
             <span class="nav__search-icon">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </span>
+            <div id="result" class="nav__search-result position-absolute" style="box-shadow: 0 0.9375rem 3.75rem rgba(2,2,22,0.1); background: white; z-index: 11111; padding: 7px; border-radius: 5px;"></div>
         </div>
         <ul class="nav__links gap-3 list-unstyled d-none d-lg-flex m-0">
             <!-- <li class="nav__link nav__link-user">

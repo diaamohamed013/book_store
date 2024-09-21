@@ -83,6 +83,34 @@
   <script src="https://unpkg.com/js-image-zoom@0.7.0/js-image-zoom.js" type="application/javascript"></script>
   <script src="assets/js/single-product.js"></script>
   <script src="assets/js/app.js"></script>
+
+  <script>
+      $(document).ready(function() {
+          $("#search").on("input", function() {
+              var searchQuery = $(this).val();
+
+              // Check if input is not empty
+              if (searchQuery !== "") {
+                  $.ajax({
+                      url: "<?= url("search") ?>",
+                      method: "POST",
+                      data: {
+                          query: searchQuery
+                      },
+                      success: function(data) {
+                          $("#result").html(data);
+                      }
+                  });
+              } else {
+                  $("#result").html("");
+              }
+          });
+          // Hide search results on scroll
+          $(window).scroll(function() {
+              $("#result").html(""); // Clear the result on scroll
+          });
+      });
+  </script>
   </body>
 
   </html>
