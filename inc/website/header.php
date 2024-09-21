@@ -38,5 +38,9 @@
                         alert('<?= getSession('added-to-cart') ?>')
                         <?php unset($_SESSION['added-to-cart']); ?>
                     <?php endif; ?>
+                    <?php if (getSession('added-to-order')): ?>
+                        alert('<?= getSession('added-to-order') ?>')
+                        <?php unset($_SESSION['added-to-order']); ?>
+                    <?php endif; ?>
                 </script>
             </header>

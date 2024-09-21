@@ -93,9 +93,10 @@ if (checkRequestMethod('POST') ) {
                 VALUES ('$order_id','$key')";
                 mysqli_query($conn, $sql);
             }
-            $_SESSION['added-to-cart'] = "Your Order has been sent successfully";
+            $_SESSION['added-to-order'] = "Your Order has been sent successfully";
+
             unset($_SESSION['cart']);
-            redirect("shop");
+            redirect("checkout");
         }
     }
     redirect("checkout");
