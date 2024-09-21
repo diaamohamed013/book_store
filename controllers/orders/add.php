@@ -7,7 +7,7 @@ if (!getSession("auth")) {
     redirect("account");
 }
 
-if (checkRequestMethod('POST') ) {
+if (checkRequestMethod('POST')) {
     foreach ($_POST as $key => $value) {
         $$key = sanitizeInput($value);
     }
@@ -66,17 +66,17 @@ if (checkRequestMethod('POST') ) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
         $randomString = '';
-    
+
         for ($i = 0; $i < 8; $i++) {
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
-        $id = $_SESSION['auth']['id']+1;
-        
+        $id = $_SESSION['auth']['id'];
+
         $total = 0;
         foreach (getSession("cart") as $key => $value) {
-            if($value['sale']){
-            $total += $value['price'] - (($value['price'] * $value['sale']) / 100);
-            }else {
+            if ($value['sale']) {
+                $total += $value['price'] - (($value['price'] * $value['sale']) / 100);
+            } else {
                 $total += $value['price'];
             }
         }
@@ -88,14 +88,14 @@ if (checkRequestMethod('POST') ) {
         $order_id = mysqli_insert_id($conn);
 
         if ($result) {
-           
-                $sql = "INSERT INTO `order_items` (`order_id`, `book_id`)
+
+            $sql = "INSERT INTO `order_items` (`order_id`, `book_id`)
                 VALUES ('$order_id','$key')";
-                mysqli_query($conn, $sql);
-            }
-            $_SESSION['added-to-cart'] = "Your Order has been sent successfully";
-            unset($_SESSION['cart']);
-            redirect("shop");
+            mysqli_query($conn, $sql);
         }
+        $_SESSION['added-to-cart'] = "Your Order has been sent successfully";
+        unset($_SESSION['cart']);
+        // redirect("shop");
+        redirect("checkout");
     }
-    redirect("checkout");
+}
