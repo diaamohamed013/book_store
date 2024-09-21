@@ -189,6 +189,15 @@ if (isset($_GET['page'])) {
         case 'remove-favourites':
             require_once 'controllers/favourites/remove.php';
             break;
+        case 'logout-dashboard':
+            require_once 'controllers/dashboard/logout.php';
+            break;
+        case 'login-dashboard':
+            require_once 'views/website/login-dashboard.php';
+            break;
+        case 'login-fn-dashboard':
+            require_once 'controllers/website/login.php';
+            break;
             //not found
         default:
             require_once 'views/website/404.php';
