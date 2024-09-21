@@ -179,6 +179,9 @@ if (isset($_GET['page'])) {
         case 'remove':
             require_once 'controllers/cart/remove.php';
             break;
+        case 'add-order':
+            require_once 'controllers/orders/add.php';
+            break;
             //favourites
         case 'add-favourites':
             require_once 'controllers/favourites/add.php';
