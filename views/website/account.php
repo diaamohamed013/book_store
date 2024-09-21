@@ -144,7 +144,7 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
           الخاص بك. ستتلقى رابطا لإنشاء كلمة مرور جديدة عبر البريد
           الإلكتروني.
         </p>
-        <form action="<?php echo url('resetpassword'); ?>" method="POST">
+        <form action="<?php echo url('send-password-reset'); ?>" method="POST">
           <div class="input-group rounded-1 mb-3">
             <input
               type="text"
