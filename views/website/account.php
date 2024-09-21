@@ -164,8 +164,7 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
             type="submit"
             value ="Reset Password"
             class="text-center fs-6 py-2 w-100 bg-black text-white border-0 rounded-1"
-           
-          /> اعادة تعيين كلمة المرور
+          />
         </form>
       </div>
     </div>

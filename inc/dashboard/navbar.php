@@ -140,6 +140,12 @@
                             <p>Orders</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="<?php echo url("logout-dashboard") ?>" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Logout</p>
+                        </a>
+                    </li>
                     <!-- <li class="nav-item">
                         <a href="<?php echo url("dashboard-users") ?>" class="nav-link <?php if (isset($page) && $_GET['page'] == "dashboard-users"): ?> <?php echo 'active' ?> <?php endif; ?>">
                             <i class="far fa-user nav-icon"></i>

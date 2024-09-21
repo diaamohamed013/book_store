@@ -92,7 +92,7 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
                 <a href="<?= url('checkout&id=' . $key) ?>" class="btn btn-primary btn-lg" style="background-color: #20c997; border-color: #20c997;">
                   إتمام الشراء
                 </a>
-                <a href="<?= url('shop') ?>" class="btn btn-primary btn-lg" style="background-color: #20c997; border-color: #20c997;">
+                <a href="<?= url('shop&nr_page=1') ?>" class="btn btn-primary btn-lg" style="background-color: #20c997; border-color: #20c997;">
                   تابع التسوق
                 </a>
               </td>

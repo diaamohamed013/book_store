@@ -94,6 +94,7 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
       </form>
       
     </div>
+    <?php if(getSession('cart')): ?>
  
     <div class="checkout__order-details-cont w-50 px-3">
       <h4>طلبك</h4>
@@ -157,13 +158,12 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
 
       <p>الدفع عند التسليم مباشرة.</p>
     </div>
-   x
+ <?php endif; ?>
   </section>
 </main>
 
 <?php
-  
-
+ 
 unset($_SESSION['error']); 
 
 require_once ROOT_PATH . 'inc/website/footer.php'; ?>

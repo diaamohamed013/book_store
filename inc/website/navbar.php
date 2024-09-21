@@ -10,7 +10,7 @@
                 <img class="h-100" src="assets/images/logo.png" alt="">
             </a>
         </div>
-        <div class="nav__search w-100">
+        <div class="nav__search w-50">
             <input class="nav__search-input w-100" type="search" placeholder="أبحث هنا عن اي شئ تريده...">
             <span class="nav__search-icon">
                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -46,10 +46,14 @@
                         <i class="fa fa-fw fa-sign-out-alt text-dark mr-3"></i>
                     </a>
                     <a class="nav-icon position-relative text-decoration-none" href="<?php echo url("orders"); ?>">
+                        الطلبات
                         <i class="fa fa-fw fa-box text-dark mr-3"></i>
                     </a>
                 <?php endif; ?>
-
+                <a class="nav-icon position-relative text-decoration-none" href="<?php echo url("login-dashboard"); ?>">
+                    لوحة التحكم
+                    <i class="fas fa-pie-chart text-dark mr-3"></i>
+                </a>
             </li>
             <li class="nav__link">
                 <a class="d-flex align-items-center gap-2" href="<?= url("favourites") ?>">
@@ -57,26 +61,26 @@
                     <div class="position-relative">
                         <i class="fa-regular fa-heart"></i>
                         <div class="nav__link-floating-icon">
-                        <?php if (getSession("favourites")): ?>
-                            <?php echo count(getSession("favourites")) ?>
-                        <?php else: ?>
-                            0
-                        <?php endif; ?>
+                            <?php if (getSession("favourites")): ?>
+                                <?php echo count(getSession("favourites")) ?>
+                            <?php else: ?>
+                                0
+                            <?php endif; ?>
                         </div>
                     </div>
                 </a>
             </li>
             <li class="nav__link">
-                <a href="<?= url('cart')?>" class="d-flex align-items-center gap-2" data-bs-target="#nav__cart">
+                <a href="<?= url('cart') ?>" class="d-flex align-items-center gap-2" data-bs-target="#nav__cart">
                     عربة التسوق
                     <div class="position-relative">
                         <i class="fa-solid fa-cart-shopping"></i>
                         <div class="nav__link-floating-icon">
-                        <?php if (getSession("cart")): ?>
-                            <?php echo count(getSession("cart")) ?>
-                        <?php else: ?>
-                            0
-                        <?php endif; ?>
+                            <?php if (getSession("cart")): ?>
+                                <?php echo count(getSession("cart")) ?>
+                            <?php else: ?>
+                                0
+                            <?php endif; ?>
                         </div>
                     </div>
                 </a>
@@ -93,9 +97,9 @@
             </li>
             <li class="nav-mobile__link d-flex align-items-center flex-column gap-1" data-bs-toggle="offcanvas"
                 data-bs-target="#nav__categories">
-                <a class="d-flex align-items-center flex-column gap-1 text-decoration-none" href="<?= url("shop") ?>">
-                <i class="fa-solid fa-align-center fa-rotate-180"></i>
-                الاقسام
+                <a class="d-flex align-items-center flex-column gap-1 text-decoration-none" href="<?php echo url('shop&nr_page=1') ?>">
+                    <i class="fa-solid fa-align-center fa-rotate-180"></i>
+                    الاقسام
                 </a>
             </li>
             <li class="nav-mobile__link d-flex align-items-center flex-column gap-1">
@@ -113,8 +117,8 @@
             <li class="nav-mobile__link d-flex align-items-center flex-column gap-1" data-bs-toggle="offcanvas"
                 data-bs-target="#nav__cart">
                 <a class="d-flex align-items-center flex-column gap-1 text-decoration-none" href="<?= url("cart") ?>">
-                <i class="fa-solid fa-cart-shopping"></i>
-                السلة
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    السلة
                 </a>
             </li>
         </ul>
@@ -136,7 +140,7 @@
         </div>
         <ul class="nav__list list-unstyled">
             <li class="nav__link nav__side-link">
-                <a href="index.php?page=shop&nr_page=1" class="py-3">
+                <a href="<?php echo url('shop&nr_page=1') ?>" class="py-3">
                     جميع المنتجات
                 </a>
             </li>
@@ -145,7 +149,7 @@
             $result_language = mysqli_query($conn, $select_language);
             foreach ($result_language as $row_language) : ?>
                 <li class="nav__link nav__side-link">
-                    <a href="index.php?page=shop&id=<?= $row_language['id'] ?>&nr_page=1" class="py-3">
+                    <a href="<?php echo url('shop&id=' . $row_language['id'] . '&nr_page=1') ?>" class="py-3">
                         <?php echo $row_language['lang_name']; ?>
                     </a>
                 </li>
