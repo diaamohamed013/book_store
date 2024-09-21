@@ -50,7 +50,9 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
                   <img src="<?php echo BASE_URL . 'assets/images/books/' . $value['image'] ?>" alt="" />
                 </td>
 
-                <td class=""><?= $value['title'] ?> </td>
+                <td class="d-block d-md-table-cell"> 
+                 <a href="<?= url("single_product&id=" . $key) ?>"> <?= $value['title'] ?></a>
+                 </td>
                 <td class="d-block d-md-table-cell">
                   <span class="product__price product__price--old"><?= $value['price'] ?> جنية</span>
                   <span class="product__price"><?= $value['price'] - (($value['price'] * $value['sale']) / 100) ?> جنية</span>
@@ -77,10 +79,10 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
                   <?php
                   $totalPrice = 0;
                   foreach (getSession('cart') as $$key => $value) {
-                    $discountedPrice = $value['price'] - (($value['price'] * $value['sale']) / 100);
+                    $discountedPrice = ($value['price'] - (($value['price'] * $value['sale']) / 100))*$value['quantity'] ;
                     $totalPrice += $discountedPrice;
                   }
-                  echo $totalPrice . ' $';
+                  echo $totalPrice   .'$';
                   ?>
                 </strong>
               

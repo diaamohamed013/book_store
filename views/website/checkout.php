@@ -114,9 +114,9 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
                 <div
                   class="product__price text-center d-flex gap-2 flex-wrap">
                   <span class="product__price product__price--old">
-                  <?= $value['price'] ?>
+                  <?= $value['price']*$value['quantity']   ?>
                   </span>
-                  <span class="product__price"><?= $value['price'] - (($value['price'] * $value['sale']) / 100) ?></span>
+                  <span class="product__price"><?= ($value['price'] - (($value['price'] * $value['sale']) / 100)) *$value['quantity']  ?></span>
                 </div>
               </td>
             </tr>
@@ -129,20 +129,20 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
                     $discountedPrice = (($value['price'] * $value['sale']) / 100) ;
                     $totalPrice += $discountedPrice;
                   }
-                  echo $totalPrice . ' $';
+                  echo $totalPrice*$value['quantity']  .'$';
                   ?> </td>
             </tr>
            
             <tr>
               <th>الإجمالي</th>
               <td class="fw-bolder"> 
-                <?php
+              <?php
                   $totalPrice = 0;
                   foreach (getSession('cart') as $$key => $value) {
-                    $discountedPrice = $value['price'] - (($value['price'] * $value['sale']) / 100);
+                    $discountedPrice = ($value['price'] - (($value['price'] * $value['sale']) / 100))*$value['quantity'] ;
                     $totalPrice += $discountedPrice;
                   }
-                  echo $totalPrice . ' $';
+                  echo $totalPrice   .'$';
                   ?>
             </tr>
            
