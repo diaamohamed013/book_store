@@ -54,6 +54,21 @@ if (isset($_GET['page'])) {
         case 'update-password':
                 require_once 'controllers/update-password.php';
                 break;
+        case 'send-password-reset':
+            require_once 'controllers/send-password-reset.php';
+            break;
+        case isset($_GET['token']) && 'reset-password&token=' . $_GET['token']:
+            require_once 'controllers/reset-password.php';
+            break;
+        case 'process-reset-password':
+            require_once 'controllers/process-reset-password.php';
+            break;
+        case 'search':
+            require_once 'controllers/search.php';
+            break;
+        case 'mail':
+            require_once 'controllers/mail.php';
+            break;
         case 'branches':
             require_once 'views/website/branches.php';
             break;
