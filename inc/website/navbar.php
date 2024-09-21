@@ -10,7 +10,7 @@
                 <img class="h-100" src="assets/images/logo.png" alt="">
             </a>
         </div>
-        <div class="nav__search w-100">
+        <div class="nav__search w-50">
             <input class="nav__search-input w-100" type="search" placeholder="أبحث هنا عن اي شئ تريده...">
             <span class="nav__search-icon">
                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -46,10 +46,14 @@
                         <i class="fa fa-fw fa-sign-out-alt text-dark mr-3"></i>
                     </a>
                     <a class="nav-icon position-relative text-decoration-none" href="<?php echo url("orders"); ?>">
+                        الطلبات
                         <i class="fa fa-fw fa-box text-dark mr-3"></i>
                     </a>
                 <?php endif; ?>
-
+                <a class="nav-icon position-relative text-decoration-none" href="<?php echo url("login-dashboard"); ?>">
+                    لوحة التحكم
+                    <i class="fas fa-pie-chart text-dark mr-3"></i>
+                </a>
             </li>
             <li class="nav__link">
                 <a class="d-flex align-items-center gap-2" href="<?= url("favourites") ?>">
