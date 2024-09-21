@@ -38,7 +38,7 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
           </div>
           <div>
             <h6 class="contact__item-title m-0">راسلنا علي الايميل</h6>
-            <p class="contact__item-text m-0">eraasoft@gmail.com</p>
+            <p class="contact__item-text m-0">diaamohamed013@gmail.com</p>
           </div>
         </div>
       </div>
@@ -71,24 +71,32 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
     <div class="contact__side w-50">
       <h4 class="mb-3">يسعدنا تواصلك معنا في أى وقت</h4>
       <p>إذا كنت تواجه أي مشكلة أو ترغب في إسترجاع أو إستبدال المنتج لا تتردد أبدأ بالتواصل معنا في أي وقت. كل ماعليك هو ملئ النموذج التالي ببيانات صحيحة وسنقوم بمراجعة طلبك في أسرع وقت.</p>
-      <form class="contact__form" action="">
+      <div class="text-center py-2">
+        <h3 class="text-success">
+          <?php echo $_SESSION['success'] ?? ''; ?>
+        </h3>
+      </div>
+      <form class="contact__form" method="POST" action="<?php echo url("send-message"); ?>">
         <div class="d-flex gap-3 mb-3">
           <div class="w-50">
             <label for="name">الاسم<span class="required">*</span></label>
-            <input class="contact__input" id="name" type="text">
+            <input class="contact__input" id="name" type="text" name="userName">
+            <span class="text-danger fs-8 mb-3 d-block"><?php echo $_SESSION['error']['userName'] ?? ''; ?></span>
           </div>
           <div class="w-50">
             <label for="phone">رقم الهاتف<span class="required">*</span></label>
-            <input class="contact__input" id="phone" type="text">
+            <input class="contact__input" id="phone" type="text" name="userPhone">
+            <span class="text-danger fs-8 mb-3 d-block"><?php echo $_SESSION['error']['userPhone'] ?? ''; ?></span>
           </div>
         </div>
         <div class="mb-3">
           <label for="email">البريد الالكتروني<span class="required">*</span></label>
-          <input class="contact__input" id="email" type="text">
+          <input class="contact__input" id="email" type="text" name="userEmail">
+          <span class="text-danger fs-8 mb-3 d-block"><?php echo $_SESSION['error']['userEmail'] ?? ''; ?></span>
         </div>
         <div class="mb-3">
           <label for="reason">سبب التواصل<span class="required">*</span></label>
-          <select class="contact__input" id="reason">
+          <select class="contact__input" id="reason" name="userSubject">
             <option value="">- اضغط هنا لاختيرا السبب -</option>
             <option value="">استفسار</option>
             <option value="">استبدال</option>
@@ -99,7 +107,8 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
         </div>
         <div>
           <label for="reason">نص الرسالة<span class="required">*</span></label>
-          <textarea class="contact__input" name="" id=""></textarea>
+          <textarea class="contact__input" id="" name="usercontent"></textarea>
+          <span class="text-danger fs-8 mb-3 d-block"><?php echo $_SESSION['error']['usercontent'] ?? ''; ?></span>
         </div>
         <button class="primary-button w-100 rounded-2">ارسال الطلب</button>
       </form>
@@ -114,5 +123,7 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
   </div>
 </main>
 
+<?php unset($_SESSION['error']); ?>
+<?php unset($_SESSION['success']); ?>
 <?php
 require_once ROOT_PATH . 'inc/website/footer.php'; ?>

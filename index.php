@@ -36,6 +36,12 @@ if (isset($_GET['page'])) {
         case 'send-user':
             require_once 'controllers/send-user.php';
             break;
+        case 'send-message':
+            require_once 'controllers/send-message.php';
+            break;
+        case 'delete-message':
+            require_once 'controllers/dashboard/delete-message.php';
+            break;
         case 'login':
             require_once 'controllers/login.php';
             break;
