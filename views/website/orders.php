@@ -53,7 +53,7 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
       <div class="profile__tab-content orders active">
         <div class="orders__none d-flex justify-content-between align-items-center py-3 px-4">
           <p class="m-0">لم يتم تنفيذ اي طلب بعد.</p>
-          <a class="primary-button text-decoration-none" href="<?= url('shop') ?>">تصفح المنتجات</a>
+          <a class="primary-button text-decoration-none" href="<?= url('shop&nr_page=1') ?>">تصفح المنتجات</a>
         </div>
         <?php $orders = getAll("orders"); ?>
         <table class="orders__table w-100">

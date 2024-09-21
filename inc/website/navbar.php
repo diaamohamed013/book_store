@@ -93,7 +93,7 @@
             </li>
             <li class="nav-mobile__link d-flex align-items-center flex-column gap-1" data-bs-toggle="offcanvas"
                 data-bs-target="#nav__categories">
-                <a class="d-flex align-items-center flex-column gap-1 text-decoration-none" href="index.php?page=shop&nr_page=1">
+                <a class="d-flex align-items-center flex-column gap-1 text-decoration-none" href="<?php echo url('shop&nr_page=1') ?>">
                     <i class="fa-solid fa-align-center fa-rotate-180"></i>
                     الاقسام
                 </a>
@@ -136,7 +136,7 @@
         </div>
         <ul class="nav__list list-unstyled">
             <li class="nav__link nav__side-link">
-                <a href="index.php?page=shop&nr_page=1" class="py-3">
+                <a href="<?php echo url('shop&nr_page=1') ?>" class="py-3">
                     جميع المنتجات
                 </a>
             </li>
@@ -145,7 +145,7 @@
             $result_language = mysqli_query($conn, $select_language);
             foreach ($result_language as $row_language) : ?>
                 <li class="nav__link nav__side-link">
-                    <a href="index.php?page=shop&id=<?= $row_language['id'] ?>&nr_page=1" class="py-3">
+                    <a href="<?php echo url('shop&id=' . $row_language['id'] . '&nr_page=1') ?>" class="py-3">
                         <?php echo $row_language['lang_name']; ?>
                     </a>
                 </li>
