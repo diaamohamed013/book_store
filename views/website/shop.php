@@ -177,11 +177,11 @@ if (isset($_GET['id'])) {
         <div
           class="products__pagination mb-5 d-flex justify-content-lg-center justify-content-md-center justify-content-sm-center justify-content-start gap-2" style="overflow-x: auto; overflow-y: hidden;">
           <?php if (isset($_GET['id']) && $str == $_GET['id']) : ?>
-            <a href="index.php?page=shop&id=<?= $str ?>&nr_page=1" class="text-decoration-none">
+            <a href="<?php echo url('shop&id=' . $str . '&nr_page=1') ?>" class="text-decoration-none">
               <span class="pagination__btn rounded-1">first</span>
             </a>
           <?php else: ?>
-            <a href="index.php?page=shop&nr_page=1" class="text-decoration-none">
+            <a href="<?php echo url('shop&nr_page=1') ?>" class="text-decoration-none">
               <span class="pagination__btn rounded-1">first</span>
             </a>
           <?php endif; ?>
@@ -189,7 +189,7 @@ if (isset($_GET['id'])) {
           <?php if (isset($_GET['id']) && $str == $_GET['id']) : ?>
             <?php if (isset($_GET['nr_page'])) : ?>
               <?php if ($_GET['nr_page'] > 1): ?>
-                <a href="index.php?page=shop&id=<?= $str ?>&nr_page=<?= $_GET['nr_page'] - 1 ?>">
+                <a href="<?php echo url('shop&id=' . $str . '&nr_page=' . $_GET['nr_page'] - 1) ?>">
                   <span class="pagination__btn rounded-1 pagination__btn--next">
                     <i class="fa-solid fa-arrow-right-long"></i>
                   </span>
@@ -205,7 +205,7 @@ if (isset($_GET['id'])) {
           <?php else: ?>
             <?php if (isset($_GET['nr_page'])) : ?>
               <?php if ($_GET['nr_page'] > 1): ?>
-                <a href="index.php?page=shop&nr_page=<?= $_GET['nr_page'] - 1 ?>">
+                <a href="<?php echo url('shop&nr_page=' . $_GET['nr_page'] - 1) ?>">
                   <span class="pagination__btn rounded-1 pagination__btn--next">
                     <i class="fa-solid fa-arrow-right-long"></i>
                   </span>
@@ -222,13 +222,13 @@ if (isset($_GET['id'])) {
 
           <?php for ($counter = 1; $counter <= $pages; $counter++) : ?>
             <?php if (isset($_GET['id']) && $str == $_GET['id']) : ?>
-              <a href="index.php?page=shop&id=<?= $str ?>&nr_page=<?= $counter ?>" class="text-decoration-none">
+              <a href="<?php echo url('shop&id=' . $str . '&nr_page=' . $counter) ?>" class="text-decoration-none">
                 <span class="pagination__btn rounded-1 <?= $counter == $_GET['nr_page'] ? "active" : "" ?>">
                   <?= $counter ?>
                 </span>
               </a>
             <?php else : ?>
-              <a href="index.php?page=shop&nr_page=<?= $counter ?>" class="text-decoration-none">
+              <a href="<?php echo url('shop&nr_page=' . $counter) ?>" class="text-decoration-none">
                 <span class="pagination__btn rounded-1 <?= $counter == $_GET['nr_page'] ? "active" : "" ?>">
                   <?= $counter ?>
                 </span>
@@ -238,7 +238,7 @@ if (isset($_GET['id'])) {
 
           <?php if (isset($_GET['id']) && $str == $_GET['id']) : ?>
             <?php if (!isset($_GET['nr_page'])) : ?>
-              <a href="index.php?page=shop&id=<?= $str ?>&nr_page=2">
+              <a href="<?php echo url('shop&id=' . $str . '&nr_page=2') ?>">
                 <span class="pagination__btn rounded-1 pagination__btn--prev">
                   <i class="fa-solid fa-arrow-left-long"></i>
                 </span>
@@ -252,7 +252,7 @@ if (isset($_GET['id'])) {
                     </span>
                   </a>
                 <?php else: ?>
-                  <a href="index.php?page=shop&id=<?= $str ?>&nr_page=<?= $_GET['nr_page'] + 1 ?>">
+                  <a href="<?php echo url('shop&id=' . $str . '&nr_page=' . $_GET['nr_page'] + 1) ?>">
                     <span class="pagination__btn rounded-1 pagination__btn--prev">
                       <i class="fa-solid fa-arrow-left-long"></i>
                     </span>
@@ -262,7 +262,7 @@ if (isset($_GET['id'])) {
             <?php endif; ?>
           <?php else: ?>
             <?php if (!isset($_GET['nr_page'])) : ?>
-              <a href="index.php?page=shop&nr_page=2">
+              <a href="<?php echo url('shop&nr_page=2') ?>">
                 <span class="pagination__btn rounded-1 pagination__btn--prev">
                   <i class="fa-solid fa-arrow-left-long"></i>
                 </span>
@@ -276,7 +276,7 @@ if (isset($_GET['id'])) {
                     </span>
                   </a>
                 <?php else: ?>
-                  <a href="index.php?page=shop&nr_page=<?= $_GET['nr_page'] + 1 ?>">
+                  <a href="<?php echo url('shop&nr_page=' . $_GET['nr_page'] + 1) ?>">
                     <span class="pagination__btn rounded-1 pagination__btn--prev">
                       <i class="fa-solid fa-arrow-left-long"></i>
                     </span>
@@ -287,11 +287,11 @@ if (isset($_GET['id'])) {
           <?php endif; ?>
 
           <?php if (isset($_GET['id']) && $str == $_GET['id']) : ?>
-            <a href="index.php?page=shop&nr_page=<?= $pages ?>" class="text-decoration-none">
+            <a href="<?php echo url('shop&id=' . $str . '&nr_page=' . $pages) ?>" class="text-decoration-none">
               <span class="pagination__btn rounded-1">last</span>
             </a>
           <?php else: ?>
-            <a href="index.php?page=shop&nr_page=<?= $pages ?>" class="text-decoration-none">
+            <a href="<?php echo url('shop&nr_page=' . $pages) ?>" class="text-decoration-none">
               <span class="pagination__btn rounded-1">last</span>
             </a>
           <?php endif; ?>

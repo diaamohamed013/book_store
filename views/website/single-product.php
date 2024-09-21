@@ -39,7 +39,7 @@ $auth_name = $single_book['auth_id'];
           $result_lang_name = mysqli_query($conn, $select_lang_name);
           foreach ($result_lang_name as $row_lang_name) : ?>
             <?php if ($lang_name == $row_lang_name['id']) : ?>
-              <a href="<?= url("shop&id=" . $row_lang_name['id']) ?>">
+              <a href="<?= url("shop&id=" . $row_lang_name['id'] . '&nr_page=1') ?>">
                 <?php echo $row_lang_name['lang_name']; ?>
               </a>
             <?php endif; ?>
