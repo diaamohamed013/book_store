@@ -70,7 +70,7 @@ if (checkRequestMethod('POST')) {
         for ($i = 0; $i < 8; $i++) {
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
-        $id = $_SESSION['auth']['id'];
+        $id = $_SESSION['auth']['id']+1;
 
         $total = 0;
         foreach (getSession("cart") as $key => $value) {
@@ -91,11 +91,13 @@ if (checkRequestMethod('POST')) {
 
             $sql = "INSERT INTO `order_items` (`order_id`, `book_id`)
                 VALUES ('$order_id','$key')";
-            mysqli_query($conn, $sql);
+                mysqli_query($conn, $sql);
+            }
+            $_SESSION['added-to-order'] = "Your Order has been sent successfully";
+
+            unset($_SESSION['cart']);
+            redirect("checkout");
         }
-        $_SESSION['added-to-cart'] = "Your Order has been sent successfully";
-        unset($_SESSION['cart']);
-        // redirect("shop");
+ 
         redirect("checkout");
     }
-}

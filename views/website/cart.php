@@ -11,7 +11,7 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
 
 <main>
   <div
-    class="page-top d-flex justify-content-center align-items-center flex-column text-center">
+    class="page-top d-flex justify-content-center align-values-center flex-column text-center">
     <div class="page-top__overlay"></div>
     <div class="position-relative">
       <div class="page-top__title mb-3">
@@ -76,8 +76,8 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
                 <strong>
                   <?php
                   $totalPrice = 0;
-                  foreach (getSession('cart') as $item) {
-                    $discountedPrice = $item['price'] - (($item['price'] * $item['sale']) / 100);
+                  foreach (getSession('cart') as $$key => $value) {
+                    $discountedPrice = $value['price'] - (($value['price'] * $value['sale']) / 100);
                     $totalPrice += $discountedPrice;
                   }
                   echo $totalPrice . ' $';
@@ -101,7 +101,7 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
 
         </table>
       <?php else: ?>
-        <div class="d-flex justify-content-center align-items-center ">
+        <div class="d-flex justify-content-center align-values-center ">
           <div class="page-center__title mb-3">
             <h2>لاتوجد منتجات في عربة التسوق</h2>
           </div>
