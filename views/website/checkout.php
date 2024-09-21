@@ -1,6 +1,9 @@
 <?php
+require_once ROOT_PATH . 'controllers/db_class/Database.php';
+
 require_once ROOT_PATH . 'inc/website/header.php';
 require_once ROOT_PATH . 'inc/website/navbar.php';
+
 ?>
 
 <main>
@@ -44,8 +47,8 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
             class="form__input bg-transparent"
             type="text"
             id="last-name">
-            <option value="">القاهرة</option>
-            <option value="">اسكندرية</option>
+            <option or$order="">القاهرة</option>
+            <option or$order="">اسكندرية</option>
           </select>
         </div>
         <div class="mb-3">
@@ -87,9 +90,12 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
                         <?php echo $_SESSION['error']['info'] ?? ''; ?>
                     </span>
         </div>
-        <button class="primary-button w-100 py-2">تاكيد الطلب</button>
+        <button  class="primary-button w-100 py-2">تاكيد الطلب</button>
       </form>
+      
     </div>
+    <?php if(getSession('cart')): ?>
+ 
     <div class="checkout__order-details-cont w-50 px-3">
       <h4>طلبك</h4>
       <div>
@@ -101,45 +107,49 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
             </tr>
           </thead>
           <tbody>
+            <?php foreach (getSession('cart') as $key => $value) : ?>
             <tr>
-              <td>كوتش فلات ديزارت -رجالى - الابيض, 42 × 1</td>
+              <td><?= $value['title'] ?></td>
               <td>
                 <div
                   class="product__price text-center d-flex gap-2 flex-wrap">
                   <span class="product__price product__price--old">
-                    400.00 جنيه
+                  <?= $value['price'] ?>
                   </span>
-                  <span class="product__price"> 180.00 جنيه </span>
+                  <span class="product__price"><?= $value['price'] - (($value['price'] * $value['sale']) / 100) ?></span>
                 </div>
               </td>
             </tr>
-            <tr>
-              <td>كوتش كاجوال -رجالى - بنى, 43 × 1</td>
-              <td>
-                <div
-                  class="product__price text-center d-flex gap-2 flex-wrap">
-                  <span class="product__price product__price--old">
-                    300.00 جنيه
-                  </span>
-                  <span class="product__price"> 150.00 جنيه </span>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th>المجموع</th>
-              <td class="fw-bolder">330.00 جنيه</td>
-            </tr>
+            <?php endforeach; ?>
             <tr class="bg-green">
               <th>قمت بتوفير</th>
-              <td class="fw-bolder">370.00 جنيه</td>
+              <td class="fw-bolder">      <?php
+                  $totalPrice = 0;
+                  foreach (getSession('cart') as $$key => $value) {
+                    $discountedPrice = (($value['price'] * $value['sale']) / 100) ;
+                    $totalPrice += $discountedPrice;
+                  }
+                  echo $totalPrice . ' $';
+                  ?> </td>
             </tr>
+           
             <tr>
               <th>الإجمالي</th>
-              <td class="fw-bolder">369.00 جنيه</td>
+              <td class="fw-bolder"> 
+                <?php
+                  $totalPrice = 0;
+                  foreach (getSession('cart') as $$key => $value) {
+                    $discountedPrice = $value['price'] - (($value['price'] * $value['sale']) / 100);
+                    $totalPrice += $discountedPrice;
+                  }
+                  echo $totalPrice . ' $';
+                  ?>
             </tr>
+           
           </tbody>
         </table>
       </div>
+
 
 
       <div class="checkout__payment py-3 px-4 mb-3">
@@ -148,10 +158,12 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
 
       <p>الدفع عند التسليم مباشرة.</p>
     </div>
+ <?php endif; ?>
   </section>
 </main>
 
 <?php
- unset($_SESSION['error']); 
+ 
+unset($_SESSION['error']); 
 
 require_once ROOT_PATH . 'inc/website/footer.php'; ?>
