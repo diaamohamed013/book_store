@@ -138,7 +138,7 @@ $new_Arrival_books = $db->sqlQuery("SELECT `books`.*  , `authors`.`author_name` 
   <section class="section-container mb-5">
     <div class="products__header mb-4 d-flex align-items-center justify-content-between">
       <h4 class="m-0">الاكثر مبيعا</h4>
-      <a href="<?php echo url("shop") ?>" class="products__btn py-2 px-3 rounded-1 text-dark text-decoration-none">تسوق الأن</a>
+      <a href="<?php echo url("shop&nr_page=1") ?>" class="products__btn py-2 px-3 rounded-1 text-dark text-decoration-none">تسوق الأن</a>
     </div>
     <div class="owl-carousel products__slider owl-theme">
       <?php while ($book = mysqli_fetch_assoc($most_sell_books)) : ?>
@@ -194,7 +194,7 @@ $new_Arrival_books = $db->sqlQuery("SELECT `books`.*  , `authors`.`author_name` 
   <section class="section-container mb-5">
     <div class="products__header mb-4 d-flex align-items-center justify-content-between">
       <h4 class="m-0">وصل حديثا</h4>
-      <a href="<?php echo url("shop") ?>" class="products__btn py-2 px-3 rounded-1 text-dark text-decoration-none">تسوق الأن</a>
+      <a href="<?php echo url("shop&nr_page=1") ?>" class="products__btn py-2 px-3 rounded-1 text-dark text-decoration-none">تسوق الأن</a>
     </div>
     <div class="owl-carousel products__slider owl-theme">
       <?php while ($book = mysqli_fetch_assoc($new_Arrival_books)) : ?>
