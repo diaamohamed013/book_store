@@ -23,7 +23,7 @@
                       <li><a class="footer__link text-decoration-none d-inline-block text-gray py-1" href="<?= url("privacy_policy") ?>">سياسة الخصوصية</a></li>
                       <li><a class="footer__link text-decoration-none d-inline-block text-gray py-1" href="<?= url("refund_policy") ?>">سياسة الاستبدال و
                               الاسترجاع</a></li>
-                      <li><a class="footer__link text-decoration-none d-inline-block text-gray py-1" href="<?= url("track_order") ?>">تتبع طلبك</a></li>
+                      <!-- <li><a class="footer__link text-decoration-none d-inline-block text-gray py-1" href="<?= url("track_order") ?>">تتبع طلبك</a></li> -->
                   </div>
               </div>
               <div class="col-md-6 col-lg-3 px-md-4 mb-5 mb-lg-0">
