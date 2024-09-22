@@ -70,7 +70,7 @@ if (checkRequestMethod('POST')) {
         for ($i = 0; $i < 8; $i++) {
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
-        $id = $_SESSION['auth']['id'] + 1;
+        $id = $_SESSION['auth']['id'];
 
         $total = 0;
         foreach (getSession("cart") as $key => $value) {
