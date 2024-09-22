@@ -20,7 +20,7 @@ if (isset($_GET['id'])) {
 
     //upload & update image 
     if (!empty($image_name)) {
-        $sql = "SELECT `image` From `products` WHERE `id` = '$id'";
+        $sql = "SELECT `image` From `books` WHERE `id` = '$id'";
         $result = mysqli_query($conn, $sql);
         $product = mysqli_fetch_assoc($result);
         $old_image = $product['image'];

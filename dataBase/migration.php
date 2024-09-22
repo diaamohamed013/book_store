@@ -54,7 +54,9 @@ quantity INT NOT NULL,
 category_id INT NOT NULL ,
 FOREIGN KEY (category_id) REFERENCES categories(id),
 auth_id INT NOT NULL ,
-FOREIGN KEY (auth_id) REFERENCES authors(id),
+ADD CONSTRAINT books_ibfk_2,
+FOREIGN KEY (auth_id) REFERENCES authors(id)
+ON DELETE CASCADE,
 lang_id INT NOT NULL ,
 FOREIGN KEY (lang_id) REFERENCES languages(id)
 )

@@ -117,14 +117,14 @@ $new_Arrival_books = $db->sqlQuery("SELECT `books`.*  , `authors`.`author_name` 
   <section class="section-container mb-5">
     <div class="categories row gx-4">
       <div class="col-md-6 p-2">
-        <a href="<?php echo url("shop&id=1") ?>">
+        <a href="<?php echo url("shop&id=1&nr_page=1") ?>">
           <div class="p-4 border rounded-3">
             <img class="w-100" src="assets/images/category-1.png" alt="">
           </div>
         </a>
       </div>
       <div class="col-md-6 p-2">
-        <a href="<?php echo url("shop&id=2") ?>">
+        <a href="<?php echo url("shop&id=2&nr_page=1") ?>">
           <div class="p-4 border rounded-3">
             <img class="w-100" src="assets/images/category-2.png" alt="">
           </div>

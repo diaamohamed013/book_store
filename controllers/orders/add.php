@@ -88,16 +88,16 @@ if (checkRequestMethod('POST')) {
         $order_id = mysqli_insert_id($conn);
 
         if ($result) {
-
-            $sql = "INSERT INTO `order_items` (`order_id`, `book_id`)
+            foreach (getSession("cart") as $key => $value) {
+                $sql = "INSERT INTO `order_items` (`order_id`, `book_id`)
                 VALUES ('$order_id','$key')";
                 mysqli_query($conn, $sql);
             }
             $_SESSION['added-to-order'] = "Your Order has been sent successfully";
-
             unset($_SESSION['cart']);
-            redirect("order_details&order_id=".$order_id);
+            redirect("order_details&order_id=" . $order_id);
         }
-
-        redirect("checkout");
     }
+
+    redirect("checkout");
+}
