@@ -2,6 +2,7 @@
 if (!getSession("auth")) {
   redirect('account');
 }
+require_once ROOT_PATH . 'controllers/db_class/Database.php';
 require_once ROOT_PATH . 'inc/website/header.php';
 require_once ROOT_PATH . 'inc/website/navbar.php';
 ?>
@@ -55,7 +56,10 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
           <p class="m-0">لم يتم تنفيذ اي طلب بعد.</p>
           <a class="primary-button text-decoration-none" href="<?= url('shop&nr_page=1') ?>">تصفح المنتجات</a>
         </div>
-        <?php $orders = getAll("orders"); ?>
+        <?php
+        $user_id = $_SESSION['auth']['id'];
+        $db = new Database("localhost", "root", "", "ebook_project");
+        $orders = $db->sqlQuery("SELECT * FROM `orders` WHERE `user_id` = '$user_id'"); ?>
         <table class="orders__table w-100">
           <thead>
             <th class="d-none d-md-table-cell">الطلب</th>
@@ -92,7 +96,7 @@ require_once ROOT_PATH . 'inc/website/navbar.php';
                     <?php elseif ($order['status'] == 'delivered'): ?>
                       تم التوصيل
                     <?php elseif ($order['status'] == 'shipped'): ?>
-                      تم الشحن 
+                      تم الشحن
                     <?php else: ?>
                       لم يتم تحد حالة الطلب
                     <?php endif; ?>
