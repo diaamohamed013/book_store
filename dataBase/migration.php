@@ -19,6 +19,8 @@ CREATE TABLE IF NOT EXISTS `users`  (
 `name` varchar(255) NOT NULL,
 `email` varchar(255) NOT NULL,
 `password` varchar(255) NOT NULL,
+`reset_token_hash` varchar(64) UNIQUE KEY,
+`reset_token_expires_at` DATETIME,
 `role` enum('user','admin') DEFAULT ('user') NOT NULL
 )
 ");
@@ -54,11 +56,9 @@ quantity INT NOT NULL,
 category_id INT NOT NULL ,
 FOREIGN KEY (category_id) REFERENCES categories(id),
 auth_id INT NOT NULL ,
-ADD CONSTRAINT books_ibfk_2,
-FOREIGN KEY (auth_id) REFERENCES authors(id)
-ON DELETE CASCADE,
+FOREIGN KEY (auth_id) REFERENCES authors(id) ON DELETE CASCADE,
 lang_id INT NOT NULL ,
-FOREIGN KEY (lang_id) REFERENCES languages(id)
+FOREIGN KEY (lang_id) REFERENCES languages(id) ON DELETE CASCADE
 )
 ");
 
